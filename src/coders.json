@@ -1,0 +1,122 @@
+[
+    {
+        "id": "1",
+        "url": "https://pbs.twimg.com/profile_images/1595880603173650432/8h-HC-NW_400x400.jpg",
+        "nombre": "Nicolás Schurmann",
+        "lenguajes": [
+            "java",
+            "javascript",
+            "python"
+        ],
+        "area": [
+            "front",
+            "back",
+            "full"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "2",
+        "url": "https://pbs.twimg.com/profile_images/1607853006300610561/7OOGNBhV_400x400.jpg",
+        "nombre": "Estefanía Cassingena",
+        "lenguajes": [
+            "javascript",
+            "python"
+        ],
+        "area": [
+            "front"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "3",
+        "url": "https://avatars.githubusercontent.com/u/1561955?v=4",
+        "nombre": "Miguel Durán",
+        "lenguajes": [
+            "javascript"
+        ],
+        "area": [
+            "back"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "4",
+        "url": "https://images-eu.ssl-images-amazon.com/images/S/influencer-profile-image-prod/logo/kikopalomares_1572422749034_original._CR0,0,3697,3697_._FMjpg_.jpeg",
+        "nombre": "Kiko Palomares",
+        "lenguajes": [
+            "java"
+        ],
+        "area": [
+            "back"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "5",
+        "url": "https://pbs.twimg.com/media/EsQPBzHW4AIuT_o.jpg",
+        "nombre": "Ania Kubow",
+        "lenguajes": [
+            "java",
+            "javascript"
+        ],
+        "area": [
+            "back"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "6",
+        "url": "https://www.clarin.com/img/2021/12/03/L-DV5IzJN_2000x1500__1.jpg",
+        "nombre": "Hernán Panessi",
+        "lenguajes": [
+            "python"
+        ],
+        "area": [
+            "back"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "7",
+        "url": "https://avatars.githubusercontent.com/u/82165284?v=4",
+        "nombre": "Gustavo Lopez",
+        "lenguajes": [
+            "javascript"
+        ],
+        "area": [
+            "front",
+            "back",
+            "full"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "8",
+        "url": "https://avatars.githubusercontent.com/u/94326934?v=4",
+        "nombre": "Sergio Mirando",
+        "lenguajes": [
+            "java",
+            "javascript",
+            "python"
+        ],
+        "area": [
+            "front",
+            "back",
+            "full"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    },
+    {
+        "id": "9",
+        "url": "https://avatars.githubusercontent.com/u/103466022?v=4",
+        "nombre": "Andrea Paez",
+        "lenguajes": [
+            "javascript"
+        ],
+        "area": [
+            "front"
+        ],
+        "descripcion": "Lorem, ipsum dolor sit amet consectetur adipisicing elit Mollitia nam illo praesentium aliquid molestias dolorum cum consequatur assumenda ratione perspiciatis. Officia repudiandae explicabo placeat vitae! Eos placeat optio dolorem perspiciatis?"
+    }
+]

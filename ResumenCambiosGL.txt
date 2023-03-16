@@ -1,0 +1,78 @@
+
+>>Formulario Login:
+Se añade direccionamiento a /crearperil al hacer click en "registrarse".
+
+>>Formulario CrearPerfil: 
+
+1. Crear Datos Perfil
+Validación: Campo nombre y apellido no pueden estar vacíos
+Campo contraseña debe tener entre 4 y 10 caracteres
+Campo contraseña 2 debe ser igual a campo 1.
+Campo url de foto obligatorio 
+Se agrega campo edad como obligatorio
+Se agrega campo linkedin con Validación
+Se agrega campo area con validación y dropdown
+Se agrega campo de teléfono con validación
+Descripción de tu portafolio 
+
+2. Add Skills
+Se debe seleccionar al menos un langauje
+Se debe seleccionar al menos un framework
+Se debe seleccionar al menos una opción de base de datos
+
+3. Crear Portafolio: 
+Campo reseña obligatorio, mínimo 20 caracteres y máximo 500
+
+4. Crear Repo
+Campo tipo de repo y repo descripción obligatorios
+Minimo 20 caracteres y max 500
+
+5. Crear Ofeta Valor:
+Campo oferta de valor mandatorios
+Minimo 20 caracteres y max 500
+
+>>Contactar a Freecoder:
+Se agrega campo título de proyecto obligatorio
+Campo explicar proyecto obligatorio
+Se cambia el input del adjunto ejemplo por URL
+Datos de cliente se dejan obligatorios
+
+>>Crear Propuesta:
+
+1.      <div>{<CrearPropInicio />}</div>
+Acá se importan el dato del cliente en el perfil del freecoder. Debería ser una vista privada.
+
+2.       <div>{<ImportarDatosCliente />}</div>
+Acá se tienen que renderizar los datos ya ingresados por el cliente en "Contactar Freecoder".
+Los campos donde se mostraban los datos importados del cliente eran areas de input, y fueron modificados por párragos con formato que imporatn los datos.
+También se modificó levemente la apariencia para diferenciarla de la sección donde se redacta la propuesta. 
+
+3.       <div>{<RedactarPropuesta1 />}</div>
+Se deja campo título y descripción obligatorios
+Se ajuste el máximo de caracteres a lo indicado en la base de datod
+
+4.       <div>{<RedactarPropuesta2 />}</div>
+Se deja como obligagtorio elegir al menos 1 lenguaje y una base de datos.
+Frameworks quedan opcionales.
+
+5.       <div>{<RedactarPropuesta3 />}</div>
+Se deja obligatorio "otras tecnologías" y el alcance.
+Se deja obligatorio indicar cantidad de revisiones, valor hora y cantidad de horas
+Valor final en pesos chilenos no puede ser 0 para "Guardar Cambios". 
+
+
+>>Mis solicitudes:
+Sin cambios de momento
+
+>>Perfil:
+Sin cambios
+
+
+
+
+
+
+
+
+
+

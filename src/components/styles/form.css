@@ -1,0 +1,549 @@
+.formContainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.paint {
+    position: absolute;
+    left: 2%;
+    top: 0;
+    z-index: 10;
+    width: 30em;
+    height: 10em;
+}
+
+.paint img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: contain;
+    transform: scale(1.7);
+}
+
+.splineContainer {
+    width: 27em;
+    height: 10em;
+    position: absolute;
+    left: 5%;
+    top: 60%;
+    z-index: 0;
+    display: block;
+}
+
+
+.homeButton {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    outline: none;
+    width: 7em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(5, 154, 233, 0.9);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: .5px .5px .5px #333;
+    z-index: 30;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.boxForm {
+    --size: 25em;
+    position: relative;
+    width: var(--size);
+    height: calc(var(--size) * 1.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.boxForm::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(var(--size) * .0625);
+    background: linear-gradient(#fff, #fff, #e3e3e3);
+    filter: blur(1px);
+    z-index: 1;
+}
+
+.boxForm::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1%;
+    height: 100%;
+    width: calc(var(--size) * .0625);
+    background: #9d9d9d;
+    filter: blur(1px);
+    z-index: 1;
+}
+
+.shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #eee;
+}
+
+.formMain .inputBoxForm {
+    width: 100%;
+    position: relative;
+    margin-top: 5%;
+}
+
+.inputBoxForm input,
+.formMain .submit {
+    position: relative;
+    width: 100%;
+    padding: 10px 0 10px 25px;
+    font-size: 1.25em;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 3px solid #444;
+    outline: none;
+}
+
+.contenedorFormulario {
+    margin: 3%;
+}
+@media (max-width: 450px) {
+    .splineContainer {
+        display: none;
+    }
+    .formContainer {
+        overflow: hidden;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.inputBoxForm,
+.textForm {
+    padding-left: 2em;
+}
+
+.iconForm {
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    font-size: 1.25em;
+    pointer-events: none;
+    color: #444;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: -25%;
+    width: calc(var(--size) / 4);
+    height: calc(var(--size) / 4);
+    background: #CFD1E1;
+    z-index: 3;
+}
+
+.boxForm .contentForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#dbdae1, #a3aaba);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .1),
+        15px 15px 15px rgba(0, 0, 0, .1),
+        20px 10px 20px rgba(0, 0, 0, .1),
+        50px 50px 70px rgba(0, 0, 0, .25),
+        inset 3px 3px 2px #fff;
+}
+
+.formMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    position: relative;
+    z-index: 5;
+}
+
+.formMain .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #444;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    margin-bottom: 7%;
+}
+
+.formMain h2 {
+    font-size: 2em;
+    color: #444;
+    margin-bottom: 5%;
+}
+
+.formMain .links {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 6%;
+}
+
+.formMain .links p {
+    display: block;
+    margin: 2% 0;
+    position: relative;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.formMain .links p:hover {
+    color: rgb(30, 30, 255);
+}
+
+.iconLink {
+    position: relative;
+    bottom: -2px;
+    left: 0;
+    margin-right: 10px;
+
+}
+
+.formMain .submit {
+    background: #444;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    transition: .5s all;
+}
+
+.formMain .submit:hover {
+    background: #333;
+}
+
+@media (max-width: 1350px) {
+    .paint {
+        top: -5%;
+        left: calc((100% - 30em) / 2);
+        transform: scale(.9);
+    }
+}
+
+@media (max-width: 1100px) {
+    .splineContainer {
+        top: 82%;
+        left: calc((100% - 22em) / 2);
+        transform: scale(.8);
+    }
+}
+
+@media (max-width: 850px) {
+
+    .paint {
+        transform: scale(.8);
+    }
+
+    .contenedorFormulario {
+        transform: scale(.9);
+    }
+}
+
+@media (max-width: 750px) {
+
+    .paint {
+        top: 10%;
+        transform: scale(.6);
+    }
+
+    .homeButton {
+        top: 3%;
+    }
+}
+
+
+@media (orientation: landscape) and (max-width: 650px) {
+    .boxForm {
+        top: 20%;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .paint {
+        top: 6%;
+        transform: scale(.7);
+    }
+
+    .homeButton {
+        position: absolute;
+        top: 5%;
+        transform: scale(.8);
+    }
+
+    .box {
+        --size: 21em;
+        height: calc(var(--size) * 1.5);
+    }
+
+    .shadow::before {
+        width: 150%;
+    }
+
+    .shadow::after {
+        width: 100%;
+        left: calc(100% + 165px);
+    }
+
+    .cover {
+        height: 200px;
+    }
+
+    .formMain h2 {
+        font-size: 1.8em;
+    }
+
+
+    .formMain .submit {
+        font-size: 1.2em;
+    }
+}
+
+
+@media (max-width: 367px) {
+    .homeButton {
+        top: 3%;
+        transform: scale(.87);
+    }
+
+    .boxForm {
+        --size: 18em;
+        height: calc(var(--size) * 1.5);
+    }
+
+    .paint {
+        top: 3%;
+    }
+
+    .shadow::before {
+        width: 150%;
+        left: 130%;
+        top: 0%;
+    }
+
+    .shadow::after {
+        left: 150%;
+    }
+
+    .formMain .logo {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5em;
+    }
+
+    .formMain h2 {
+        font-size: 1.6em;
+    }
+
+    .formMain .icon {
+        font-size: .9em;
+    }
+
+    .formMain .links p {
+        font-size: .9em;
+    }
+
+    .formMain .submit {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 850px) {
+    .paint {
+        transform: scale(.6);
+        position: absolute;
+        top: 2%;
+    }
+
+    .homeButton {
+        top: 3%;
+    }
+}

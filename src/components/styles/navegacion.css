@@ -1,0 +1,54 @@
+.mainNavBarContainer {
+    width: 100%;
+    min-height: 5em;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3%;
+}
+
+.mainNavBarContainer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    background: url(https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: .3;
+    z-index: 0;
+}
+
+.mainNavBar, .isActive {
+    text-decoration: none;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, .7);
+    margin: 1%;
+    width: 9.2em;
+    text-align: center;
+    height: 1.5em;
+    line-height: 1.5em;
+    cursor: pointer;
+    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: .5s all;
+}
+
+.mainNavBar:hover, .isActive {
+    background: #000;
+    color: #fff;
+}

@@ -1,0 +1,318 @@
+.filtrador {
+    width: 100%;
+    height: 5em;
+    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.filtradorHamburger {
+    flex-direction: column;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    background: transparent;
+    gap: .45rem;
+    display: none;
+    z-index: 10;
+}
+
+.filtradorHamburger div {
+    background: #000;
+    height: 2px;
+    width: 2em;
+    border-radius: 5px;
+    transition: all .5s;
+    transform-origin: left;
+    cursor: pointer;
+}
+
+.filtradorCruz {
+    cursor: pointer;
+}
+
+.filtradorCruz div:first-child {
+    transform: rotate(45deg);
+}
+
+.filtradorCruz div:nth-child(2) {
+    opacity: 0;
+}
+
+.filtradorCruz div:last-child {
+    transform: rotate(-45deg);
+}
+
+.filtradorLogo {
+    width: 20em;
+    height: 100%;
+    position: relative;
+}
+
+.filtradorLogo img {
+    position: absolute;
+    top: -60%;
+    width: 100%;
+    height: 10em;
+    object-fit: cover;
+    object-position: center;
+}
+
+.menuBusqueda {
+    height: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.filtroName {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 110%;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+
+.filterCoderArea {
+    position: relative;
+    z-index: 100;
+}
+
+.busquedaResponsive {
+    position: absolute;
+    top: -100%;
+    background: red;
+    width: 50em;
+    height: 5em;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: menuBusqueda .5s linear forwards;
+}
+
+@keyframes menuBusqueda {
+    0% {
+        top: -100%;
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        top: 150%;
+        opacity: 1;
+    }
+}
+
+.volver {
+    width: 10em;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.volver a {
+    text-decoration: none;
+}
+
+.volverButton {
+    position: relative;
+    right: 40%;
+    outline: none;
+    width: 7em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(5, 154, 233, 0.9);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: .5px .5px .5px #333;
+    z-index: 30;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.volverIcon {
+    font-size: 2em;
+    position: relative;
+    z-index: 30;
+    color: blue;
+    cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+    display: none;
+}
+
+.inputBoxSearch {
+    position: relative;
+}
+
+.inputBoxSearch input {
+    width: 13em;
+    height: 1.6em;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+
+.hiddenBox {
+
+    width: 11em;
+    height: 6em;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    position: absolute;
+    top: 300%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;
+    z-index: 50;
+}
+
+.codersName {
+    overflow: hidden;
+}
+
+.textoArea {
+    position: relative;
+    z-index: 100;
+}
+
+.hiddenBox p {
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 2em;
+    line-height: 2em;
+    transition: all .5s;
+}
+
+.hiddenBox p:hover {
+    background: rgba(5, 154, 233, 0.5);
+}
+
+.hidden {
+    display: block;
+    animation: showing .5s linear forwards;
+}
+
+@keyframes showing {
+    from {
+        opacity: 0;
+        top: -1000%;
+    }
+
+    to {
+        opacity: 1;
+        top: 300%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .volverButton {
+        display: none;
+    }
+
+    .volverIcon {
+        display: block;
+        font-size: 1.5em;
+        color: #000;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .menuBusqueda {
+        display: none;
+    }
+
+    .filtradorLogo {
+        position: absolute;
+    }
+
+    .filtradorLogo img {
+        transform: scale(.8);
+        position: absolute;
+    }
+
+    .filtradorHamburger {
+        display: flex;
+        position: absolute;
+        top: 60%;
+        transform: translateY(-50%);
+        left: 5%;
+        z-index: 50;
+        cursor: pointer;
+    }
+
+    .busquedaResponsive {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        position: absolute;
+    }
+
+    .filtroName {
+        top: -15%;
+        left: -20%;
+    }
+
+    .areaFiltro {
+        left: -31%;
+    }
+
+    .nombreFiltro {
+        left: -25%
+    }
+
+
+    .boxSearchInput {
+        position: relative;
+        left: 30%
+    }
+
+    .hidden {
+        display: block;
+        animation: showing .5s linear forwards;
+        position: absolute;
+        left: 45%;
+    }
+
+    @keyframes showing {
+        from {
+            opacity: 0;
+            top: 0;
+        }
+
+        to {
+            opacity: 1;
+            position: fixed;
+            top: 130%;
+        }
+    }
+}

@@ -1,0 +1,459 @@
+/* another one */
+
+input::placeholder,
+textarea::placeholder {
+    font-family: 'Consolas';
+}
+
+.App {
+    font-family: 'consolas';
+    text-align: center;
+}
+
+.consolas-font {
+    font-family: 'consolas';
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/*Desde acá es agregado al css por defecto de la app*/
+
+code {
+    /*font-family: 'Helvetica Neue', sans-serif;*/
+    font-family: 'consolas';
+}
+
+
+/* General Styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'consolas';
+    /*font-family: 'Helvetica Neue', sans-serif;*/
+    font-size: 16px;
+    color: #333;
+    /*background-color: #f5f5f5; */
+    background-color: #ced1e1;
+}
+
+
+/* Form Styles */
+
+input.form-control {
+    width: 90%;
+}
+
+select#formUrl {
+    width: 90%;
+}
+
+textarea#formFreeText {
+    width: 90%;
+}
+
+form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(45, 160, 232, 0.95);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+    background-color: rgba(45, 160, 232, 0.95);
+}
+
+
+/* Range Slider Styles */
+
+.rheostat-handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(45, 160, 232, 0.95);
+    border: 1px solid rgba(45, 160, 232, 0.95);
+}
+
+.rheostat-handle:focus {
+    outline: none;
+}
+
+.rheostat-background {
+    height: 4px;
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.rheostat-progress {
+    height: 4px;
+    background-color: rgba(45, 160, 232, 0.95);
+    border-radius: 4px;
+}
+
+
+/* Container Styles */
+
+.maincontainer {
+    display: flex;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    padding: 4%;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    font-family: 'consolas';
+    position: relative;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.maincontainer {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.maincontainer-tecs {
+    display: flexbox;
+    flex-direction: column;
+    padding: 2px;
+    margin: 2px;
+    position: relative;
+}
+
+.maincontainer input[type="text"],
+.maincontainer input[type="email"],
+.maincontainer input[type="password"],
+.maincontainer input[type="range"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    position: relative;
+}
+
+.maincontainer button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(45, 160, 232, 0.95);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: 'consolas';
+    position: relative;
+}
+
+.maincontainer button[type="submit"]:hover {
+    background-color: #0062cc;
+    position: relative;
+}
+
+#maincontainer-button2[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(127, 128, 129, 0.95);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: 'consolas';
+    position: relative;
+}
+
+ul.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    position: relative;
+}
+
+ul.list-unstyled li {
+    border-bottom: 0.5px solid rgb(136, 136, 136);
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+}
+
+
+/* Navbar Styles */
+
+.form-navbar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.form-navbar {
+    font-weight: normal;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#main-nav {
+    background-color: #444444;
+    margin: 5px;
+    padding: 5px;
+    color: whitesmoke;
+    position: absolute;
+}
+
+
+/* Botones específicos */
+
+#button-crearperfil {
+    display: block;
+    width: 50%;
+    margin: 10px auto 20px auto;
+    padding: 10px;
+    background-color: #444444;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#button-skills {
+    display: block;
+    margin: 10px auto 20px auto;
+    padding: 10px;
+    background-color: rgb(152, 154, 152);
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+/* Textos importados */
+
+.my-textarea {
+    /*    font-family: 'Helvetica Neue', sans-serif;*/
+    font-family: 'consolas';
+}
+
+
+/*Tablas específicas*/
+
+.striped-bordered-hover {
+    border-collapse: collapse;
+}
+
+.striped-bordered-hover th,
+.striped-bordered-hover td {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+}
+
+.striped-bordered-hover tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.striped-bordered-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+
+/*Listas específicas*/
+
+.maincontainer-tecs {
+    display: grid;
+    margin: auto;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0px;
+    font-size: small;
+}
+
+.stack-orden {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*min-height: 100vh;*/
+    width: 100%;
+    position: relative;
+    background: #cfd1e1;
+}
+
+@media (orientation: landscape) and (max-width: 650px) {
+    .container {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+
+select#formUrl {
+    width: 90%;
+}
+
+textarea#formFreeText {
+    width: 90%;
+}
+
+input.form-control {
+    width: 90% !important;
+}
+
+input#formTelefono {
+    width: 90% !important;
+}
+
+.maincontainer-valor {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+}
+
+.maincontainer-caja {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+}
+
+.input-valor {
+    width: 100%;
+}
+
+.maincontainer-solicitudes {
+    display: flex;
+    /* width: 80%; */
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    /* font-family: 'Helvetica Neue', sans-serif; */
+    font-family: 'consolas';
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.maincontainer-proceso {
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    padding-top: 3%;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    font-family: 'consolas';
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: space-around;
+}
+
+.repositorio.maincontainer {
+    width: 100%;
+}
+
+select {
+    width: 100% !important;
+}
+
+input[type="number"] {
+    width: 90%;
+}
+
+textarea.my-textarea {
+    width: 90%;
+}
+
+img.card-img-top {
+    width: 100% !important;
+}
+
+h3.titulo-seguimiento {
+    /* text-align: center; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    /* align-content: space-around; */
+    justify-content: flex-start;
+}
+
+input[type="file"] {
+    width: 100%;
+}

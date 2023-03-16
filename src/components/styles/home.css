@@ -1,0 +1,100 @@
+ .homeContainer {
+     width: 100%;
+     height: 91.2vh;
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     flex-direction: column;
+     /*     position: relative;*/
+     overflow-y: hidden;
+     overflow-x: hidden;
+ }
+ 
+ .ball {
+     position: absolute;
+     top: 0%;
+     left: -20%;
+ }
+ 
+ .spline {
+     position: absolute;
+     transform: translateY(-50%);
+     width: 5em;
+     height: 5em;
+     z-index: 0;
+     top: 20%;
+     right: 30%;
+ }
+ 
+ .splineBalls {
+     object-fit: contain;
+     object-position: center;
+     width: 300px;
+ }
+ 
+ .codersTitle {
+     position: relative;
+     left: 50%;
+     top: -10%;
+ }
+ 
+ .subtitle {
+     position: absolute;
+     left: 40%;
+     top: 5%;
+     transform: translateX(-50%);
+     z-index: 10;
+     font-size: 1.4em;
+     font-weight: 600;
+ }
+ 
+ .homeFooter {
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+ }
+ 
+ @media (max-width: 850px) {
+     .spline {
+         top: 50%;
+         left: -20%;
+         width: 200%;
+         z-index: 0;
+     }
+     .splineBalls {
+         position: relative;
+         width: 100px;
+         z-index: 0;
+     }
+ }
+ 
+ @media (min-width: 450px) and (max-width: 850px) {
+     .subtitle {
+         font-size: 1.8em;
+         top: 20%;
+         position: absolute;
+         width: 80%;
+         text-align: center;
+         left: 50%;
+         transform: translateX(-50%);
+     }
+     .spline {
+         left: 20%;
+     }
+ }
+ 
+ @media (min-width: 850px) and (max-width: 1200px) {
+     .spline {
+         left: 53%;
+     }
+ }
+ 
+ @media (max-width: 450px) {
+     .subtitle {
+         width: 100%;
+         left: 50%;
+     }
+     .spline {
+         display: none;
+     }
+ }

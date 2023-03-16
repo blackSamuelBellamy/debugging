@@ -1,0 +1,138 @@
+.codersWrap {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 30;
+    background: #C9D6F3;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.codersWrap::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, transparent, rgba(82, 79, 79, 0.884), rgba(232, 237, 235, 0.895));
+    opacity: .8;
+}
+
+.coderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+    background: #C9D6F3;
+    position: absolute;
+    top: 11%;
+}
+
+.coderContainer::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, transparent, rgba(82, 79, 79, 0.884), rgba(232, 237, 235, 0.895));
+    opacity: .8;
+}
+
+
+.coderBoxCards {
+    margin: 20px;
+}
+
+.single-box {
+    width: 300px;
+    height: 300px;
+    perspective: 1200px;
+}
+
+.coderBox-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-150px);
+    transition: .5s all;
+}
+
+.sides {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+
+.side-1 {
+    object-position: center;
+    object-fit: cover;
+    transform: rotateY(0) translateZ(150px);
+    z-index: 2;
+}
+
+.side-2 {
+    background-color: aliceblue;
+    color: #222;
+    transform: rotateY(90deg) translateZ(150px)
+}
+
+.coderBoxCards:hover .coderBox-content {
+    transform:translateX(-50%)  rotateY(-90deg) translateZ(-150px);
+}
+
+.contentCoders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5%;
+    height: 100%;
+}
+
+.contentCoders h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+}
+
+.contentCoders .p {
+    font-size: 25px;
+    line-height: 25px;
+    font-family: monospace;
+}
+
+.socials {
+    /* margin-top: 30px; */
+}
+
+.icons {
+    margin:  0 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.busquedaFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .coderContainer {
+        flex-direction: column;
+    }
+}
+
+/* @media (max-width: 1360px) {
+    .coderContainer {
+        top: 30%;
+    }
+}
+
+ */

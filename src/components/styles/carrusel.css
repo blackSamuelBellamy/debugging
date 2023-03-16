@@ -1,0 +1,66 @@
+.gallery {
+    height: 50vh;
+    width: 60%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.swiperContenedor {
+    background: linear-gradient(to bottom, transparent, transparent, transparent, transparent, rgba(0, 0, 80, .8));
+    border-radius: 30px;
+    min-height: 20px;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+.cardContainer {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+.cardContainer img {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .gallery {
+        width: 100%;
+        left: 0;
+        height: 90vh;
+    }
+    .swiperContenedor {
+        position: relative;
+        z-index: 30;
+        left: 0%;
+        width: 80vw;
+        top: 30%;
+    }
+    .cardContainer {
+        width: 250px;
+        z-index: 30;
+    }
+    .cardContainer img {
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 850px) and (max-width: 1200px) {
+    .gallery {
+        left: 5%;
+    }
+    .swiperContenedor {
+        position: absolute;
+        left: 0;
+        width: 65vw;
+    }
+}
