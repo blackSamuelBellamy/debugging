@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
+    "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.2",
     "swiper": "^9.0.5",
     "typewriter-effect": "^2.19.0"

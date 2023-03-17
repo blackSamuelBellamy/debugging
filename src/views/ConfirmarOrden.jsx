@@ -1,4 +1,5 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Navegacion from "../components/Navegacion";
 
 function ConfirmRequest() {
@@ -8,7 +9,7 @@ function ConfirmRequest() {
   return (
     <>
       <div className="maincontainer">
-       {/*  <Navegacion /> */}
+        {/*  <Navegacion /> */}
         <div className="maincontainer">
           <h2>¡Felicitaciones!</h2>
           <br />
@@ -63,8 +64,10 @@ function ConfirmRequest() {
             id="button-crearperfil"
             className="consolas-font"
           >
-            Volver al inicio
-          </Button>
+            <Link to="/home" style={{ color: "white" }}>
+              Volver al inicio
+            </Link>
+          </Button>{" "}
         </div>
       </div>
     </>

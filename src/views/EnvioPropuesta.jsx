@@ -2,12 +2,41 @@ import { Container, Card } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Navegacion from "../components/Navegacion";
+import Swal from "sweetalert2";
+
 //import { userName, date, randomName } from "../database";
 
 const temporaryData = {
   userName: "Mary Freecoder",
   date: "2022-10-01",
   clientName: "Francisco",
+};
+
+const handleAcceptProposal =(event) => {
+  event.preventDefault();
+  Swal.fire({
+    title: 'Felicitaciones',
+    text: 'Has aceptado la propuesta',
+    icon: 'success',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Ir al pago'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Redirect to another component here
+      window.location.href = '/abonarpropuesta';
+    }
+  });
+};
+
+
+const  handleRejectProposal =(event) => {
+  event.preventDefault();
+  Swal.fire({
+    title: 'Lo sentimos :(',
+    text: 'Has decidido no aceptar la propuesta. Puedes intentarlo nuevamente',
+    icon: 'warning'
+  });
 };
 
 function EnvioPropuesta() {
@@ -124,8 +153,8 @@ function EnvioPropuesta() {
             </div>
           </div>
           <div className="maincontainer">
-            <Button type="submit"> Aceptación de la propuesta </Button>
-            <Button type="submit" id="maincontainer-button2">
+            <Button type="submit" onClick={handleAcceptProposal} > Aceptación de la propuesta </Button>
+            <Button type="submit" id="maincontainer-button2" onClick={handleRejectProposal} >
               {" "}
               Rechazo de la propuesta{" "}
             </Button>

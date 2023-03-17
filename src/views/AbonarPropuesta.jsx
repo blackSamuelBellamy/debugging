@@ -4,17 +4,22 @@ import AbonarPropuesta1 from "../components/AbonarPropuesta1";
 import AbonarPropuesta2 from "../components/AbonarPropuesta2";
 import NavBar from "../components/NavBar";
 import Navegacion from "../components/Navegacion";
+import Swal from "sweetalert";
 
 export default function AbonarPropuesta() {
   const [isSaving, setIsSaving] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
 
   const handleSaveClick = () => {
     setIsSaving(true);
     // Save all changes here
     setTimeout(() => {
       setIsSaving(false);
-      setResponseMessage("Tu abono ha sido recibido, el Freecoder comenzará el trabajo");
+      Swal({
+        title: "¡Abono recibido!",
+        text: "El Freecoder comenzará el trabajo",
+        icon: "success",
+        button: "Aceptar",
+      });
     }, 2000); // simulate save operation with a 2 second delay
   };
 
@@ -26,7 +31,7 @@ export default function AbonarPropuesta() {
         <AbonarPropuesta1 />
       </div>
       <div className="maincontainer">
-        <AbonarPropuesta2 setShowMessage={setResponseMessage} />
+        <AbonarPropuesta2 />
       </div>
       <div className="maincontainer text-center mt-4">
         <Button
@@ -37,13 +42,6 @@ export default function AbonarPropuesta() {
         >
           {isSaving ? "Guardando..." : "Enviar Abono"}
         </Button>
-        {responseMessage && (
-          <div style={{ backgroundColor: "#e4e4e4", padding: "15px", textAlign: "center" }}>
-            {responseMessage === "Tu abono ha sido recibido, el Freecoder comenzará el trabajo" && (
-              <h3 style={{ fontWeight: "bold", color: "blue" }}>{responseMessage}</h3>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

@@ -67,11 +67,12 @@ const Nav = () => {
           >
             Crear Propuesta
           </NavLink>
+
           <NavLink
-            to="/enviopropuesta"
+            to="/confirmarorden"
             className={hamburgerDisplay ? "liDisplayed" : "li displaynone"}
           >
-            Enviar Propuesta
+            Orden en proceso
           </NavLink>
 
           <NavLink
@@ -80,12 +81,14 @@ const Nav = () => {
           >
             Seguimiento
           </NavLink>
+
           <NavLink
-            to="/confirmarorden"
+            to="/enviopropuesta"
             className={hamburgerDisplay ? "liDisplayed" : "li displaynone"}
           >
-            Orden en proceso
+            Enviar Propuesta
           </NavLink>
+
           <NavLink
             to="/abonarpropuesta"
             className={hamburgerDisplay ? "liDisplayed" : "li displaynone"}
@@ -120,23 +123,26 @@ const Nav = () => {
               >
                 Crear Propuesta
               </NavLink>
+
               <NavLink
-                to="/enviopropuesta"
+                to="/confirmarorden"
                 className={hamburgerDisplay ? "liDisplayed" : "li"}
               >
-                Enviar Propuesta
+                Orden en proceso
               </NavLink>
+
               <NavLink
                 to="/seguimiento"
                 className={hamburgerDisplay ? "liDisplayed" : "li"}
               >
                 Seguimiento
               </NavLink>
+
               <NavLink
-                to="/confirmarorden"
+                to="/enviopropuesta"
                 className={hamburgerDisplay ? "liDisplayed" : "li"}
               >
-                Orden en proceso
+                Enviar Propuesta
               </NavLink>
               <NavLink
                 to="/abonarpropuesta"

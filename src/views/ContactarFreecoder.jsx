@@ -4,6 +4,7 @@ import { Card, ListGroup, Form, Button } from "react-bootstrap";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { DataContext } from "../hooks/DataContext";
 import Navegacion from "../components/Navegacion";
+import Swal from "sweetalert2";
 
 export default function ContactarFreecoder() {
   const { coders } = useContext(DataContext);
@@ -94,6 +95,16 @@ export default function ContactarFreecoder() {
     setComments(event.target.value);
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    Swal.fire({
+      icon: "success",
+      title: "¡Éxito!",
+      text: "La solicitud ha sido enviada con éxito al Freecoder.",
+    });
+  };
+  
+
   return (
     <>
       <div className="maincontainer">
@@ -140,7 +151,11 @@ export default function ContactarFreecoder() {
                     maxLength={50}
                   />
                   <br />
-                  {title.length === 0 && <span style={{ color: 'red' }} >Este campo es requerido</span>}
+                  {title.length === 0 && (
+                    <span style={{ color: "red" }}>
+                      Este campo es requerido
+                    </span>
+                  )}
                 </div>
               </form>
               <br />
@@ -157,15 +172,17 @@ export default function ContactarFreecoder() {
                     maxLength={1000}
                   />
                   <br />
-                  {description.length === 0 && <span style={{ color: 'red' }}>Este campo es requerido</span>}
-
+                  {description.length === 0 && (
+                    <span style={{ color: "red" }}>
+                      Este campo es requerido
+                    </span>
+                  )}
                 </div>
               </form>
               <button type="submit" onClick={handleSaveButtonClick}>
                 Guardar
               </button>
             </div>
-            
 
             <div className="maincontainer">
               <div className="stack-orden">
@@ -345,12 +362,24 @@ export default function ContactarFreecoder() {
                     style={{ width: "300px", borderColor: "#dcdcdc" }}
                   />
                 </div>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="button-guardar"
+                  onClick={handleSaveButtonClick}
+                >
+                  Guardar
+                </Button>
+
               </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Enviar solicitud
-              </Button>
             </Form>
+            <Form onSubmit={handleFormSubmit}>
+                <Button variant="primary" type="submit">
+                  Enviar solicitud
+                </Button>
+              </Form>
+
           </div>
         </div>
       </div>
