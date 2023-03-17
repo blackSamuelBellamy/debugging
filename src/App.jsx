@@ -28,51 +28,44 @@ const App = () => {
       <States>
         <BrowserRouter>
           <Nav />
-          <div className="container" >
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route index element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Form />} />
-
-            <Route
-              path="/missolicitudes"
-              element={
-                <ProtectedRoute
-                  component={<MisSolicitudes />}
-                  isLoggedIn={isLoggedIn}
-                  password={password}
-                />
-              }
-            />
-
-            <Route
-              path="/crearpropuesta"
-              element={
-                <ProtectedRoute
-                  component={<CrearPropuesta />}
-                  isLoggedIn={isLoggedIn}
-                  password={password}
-                />
-              }
-            />
-
-            <Route path="/busqueda" element={<Busqueda />} />
-            <Route path="/perfilfreecoder" element={<PerfilFreecoder />} />
-            <Route path="/crearperfil" element={<CrearPerfil />} />
-            {/*             <Route path="/missolicitudes" element={<MisSolicitudes />} />
-             */}
-            <Route
-              path="/contactarfreecoder"
-              element={<ContactarFreecoder />}
-            />
-            {/*             <Route path="/crearpropuesta" element={<CrearPropuesta />} /> */}
-            <Route path="/abonarpropuesta" element={<AbonarPropuesta />} />
-            <Route path="/confirmarorden" element={<ConfirmarOrden />} />
-            <Route path="/seguimiento" element={<Seguimiento />} />
-            <Route path="/enviopropuesta" element={<EnvioPropuesta />} />
-          </Routes>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route index element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Form />} />
+              <Route
+                path="/missolicitudes"
+                element={
+                  <ProtectedRoute
+                    component={<MisSolicitudes />}
+                    isLoggedIn={isLoggedIn}
+                    password={password}
+                  />
+                }
+              />
+              <Route
+                path="/crearpropuesta"
+                element={
+                  <ProtectedRoute
+                    component={<CrearPropuesta />}
+                    isLoggedIn={isLoggedIn}
+                    password={password}
+                  />
+                }
+              />
+              <Route path="/busqueda" element={<Busqueda />} />
+              <Route path="/perfilfreecoder" element={<PerfilFreecoder />} />
+              <Route path="/crearperfil" element={<CrearPerfil />} />
+              <Route
+                path="/contactarfreecoder"
+                element={<ContactarFreecoder />}
+              />
+              <Route path="/abonarpropuesta" element={<AbonarPropuesta />} />
+              <Route path="/confirmarorden" element={<ConfirmarOrden />} />
+              <Route path="/seguimiento" element={<Seguimiento />} />
+              <Route path="/enviopropuesta" element={<EnvioPropuesta />} />
+            </Routes>
           </div>
         </BrowserRouter>
       </States>

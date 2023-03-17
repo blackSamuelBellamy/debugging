@@ -7,12 +7,12 @@ Al preguntar a Chat GPT aparece la respuesta de más abajo. Dado que las rutas e
 ***
 
 
-The error "page not found" may be occurring because the route "/abonarpropuesta" is not defined in your application's routing system. You need to define the route in your router so that the application knows how to handle the request.
+The error "page not found" may be occurring because the route "/abonarpropuesta" is not defined in your application's routing system. 
+You need to define the route in your router so that the application knows how to handle the request.
 
 Assuming you are using React Router, you can define the route in your router component like this:
 
-javascript
-Copy code
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AbonarPropuesta from './components/AbonarPropuesta';
 
