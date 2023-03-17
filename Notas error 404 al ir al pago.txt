@@ -1,0 +1,30 @@
+En el componente "/enviopropuesta", al aceptar en el sweet alert y enviar al pago, funciona el salto a la ruta /abonarpropuesta.
+
+Desplegado en Netifly, no, aparece el error "page not found"
+
+Al preguntar a Chat GPT aparece la respuesta de más abajo. Dado que las rutas están en el backend, presumo que se soluciona ahí. 
+
+***
+
+
+The error "page not found" may be occurring because the route "/abonarpropuesta" is not defined in your application's routing system. You need to define the route in your router so that the application knows how to handle the request.
+
+Assuming you are using React Router, you can define the route in your router component like this:
+
+javascript
+Copy code
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AbonarPropuesta from './components/AbonarPropuesta';
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        // Other routes here
+        <Route exact path="/abonarpropuesta" component={AbonarPropuesta} />
+      </Switch>
+    </Router>
+  );
+}
+Make sure to import the AbonarPropuesta component and replace it with the actual component you want to render when the "/abonarpropuesta" route is requested.
+
