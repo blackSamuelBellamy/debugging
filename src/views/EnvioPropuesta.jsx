@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import Navegacion from "../components/Navegacion";
 import Swal from "sweetalert2";
 
-//import { userName, date, randomName } from "../database";
+//Esta es data mock de los coders. Debe reemplazarse por la proveniente de la BD. 
 
 const temporaryData = {
   userName: "Mary Freecoder",
