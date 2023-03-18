@@ -1,9 +1,12 @@
 import * as React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 import { Form, Button } from "react-bootstrap";
 import RangeSlider from "react-bootstrap-range-slider";
+import Swal from "sweetalert2";
 
 export default function CrearDatosPerfil() {
+  const { setData } = useContext(DataContext)
   const mainForm = useRef(null);
   const [rate, setRate] = useState(10000);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,20 +19,37 @@ export default function CrearDatosPerfil() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formulario = new FormData(mainForm.current)
+    const data = Object.fromEntries([...formulario.entries()])
+    setData(data)
 
     const { password, confirm } = e.target.elements;
 
     if (password.value !== confirm.value) {
-      alert("La contraseña y la confirmación de contraseña no coinciden");
-      return;
+      Swal.fire({
+        icon: "error",
+        title: "La contraseña y la confirmación de contraseña no coinciden",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
 
-    if (password.value.length < 4 || password.value.length > 10) {
-      setPasswordError("La contraseña debe tener entre 4 y 10 caracteres");
-      return;
+    else if (password.value.length < 4 || password.value.length > 10) {
+      setPasswordError("");
+      Swal.fire({
+        icon: "error",
+        title: "La contraseña debe tener entre 4 y 10 caracteres",
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Información guardada",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
-
-    console.log(mainForm.current);
   };
 
   return (
@@ -56,6 +76,7 @@ export default function CrearDatosPerfil() {
             type="text"
             placeholder="Agregar apellido"
             required
+            name="apellido"
             aria-label="Campo obligatorio: Apellido"
           />
         </Form.Group>
@@ -66,6 +87,7 @@ export default function CrearDatosPerfil() {
             type="email"
             placeholder="Ingresar correo"
             required
+            name="email"
             aria-label="Campo obligatorio: Dirección de correo electrónico"
           />
         </Form.Group>
@@ -77,13 +99,13 @@ export default function CrearDatosPerfil() {
             type="tel"
             placeholder="Formato 5612345678"
             required
+            name="telefono"
             pattern="[00-9]{8,14}"
             aria-label="Campo obligatorio: Teléfono"
           />
         </Form.Group>
 
         <br />
-        <Form noValidate>
           <Form.Group controlId="formAge">
             <Form.Label>Edad</Form.Label>
             <br />
@@ -91,12 +113,11 @@ export default function CrearDatosPerfil() {
               type="number"
               placeholder="Ingresa tu edad"
               required
+              name="edad"
               aria-label="Campo obligatorio: Edad"
             />
-          </Form.Group>
-        </Form>
+          </Form.Group> 
         <br />
-
 
         <Form.Group controlId="formUrl">
           <Form.Label>Perfil de Linkedin</Form.Label>
@@ -106,6 +127,7 @@ export default function CrearDatosPerfil() {
             placeholder="URL de Linkedin"
             required
             aria-label="Campo obligatorio: URL"
+            name="linkedin"
           />
         </Form.Group>
         <br />
@@ -113,7 +135,8 @@ export default function CrearDatosPerfil() {
         <Form.Group controlId="formUrl">
           <Form.Label>Área de especialidad</Form.Label>
           <br />
-          <Form.Select required aria-label="Campo obligatorio: Especialidad">
+          <Form.Select required aria-label="Campo obligatorio: Especialidad"
+          name="area">
             <option value="">Seleccione una opción</option>
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>

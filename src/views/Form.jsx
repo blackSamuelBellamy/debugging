@@ -7,6 +7,7 @@ import { HiUserPlus } from "react-icons/hi2";
 import { DataContext } from "../hooks/DataContext";
 import "../components/styles/form.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Form = () => {
   const { setCorreo, correo, setClave, clave } = useContext(DataContext);
@@ -59,12 +60,26 @@ const Form = () => {
     } else {
       setClave(password);
       setCorreo(email);
-      Swal.fire({
-        icon: "success",
-        title: "Usuario validado",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      axios.post(import.meta.env.VITE_MAIN_API + '/login', {email, password})
+      .then(res => {
+        Swal.fire({
+          icon: "success",
+          title: "Usuario validado",
+          showConfirmButton: false,
+          timer: 1500,
+        })
+        localStorage.setItem('coderToken', JSON.stringify(res.data))
+        
+        setTimeout(() => navigate('/missolicitudes'), 1600)
+      }).catch(err => {
+        console.log(err)
+        Swal.fire({
+          icon: "error",
+          title: err.response.data,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
     }
   };
   return (

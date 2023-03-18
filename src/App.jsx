@@ -55,10 +55,10 @@ const App = () => {
                 }
               />
               <Route path="/busqueda" element={<Busqueda />} />
-              <Route path="/perfilfreecoder" element={<PerfilFreecoder />} />
+              <Route path="/perfil/:id" element={<PerfilFreecoder />} />
               <Route path="/crearperfil" element={<CrearPerfil />} />
               <Route
-                path="/contactarfreecoder"
+                path="/contactarfreecoder/:id"
                 element={<ContactarFreecoder />}
               />
               <Route path="/abonarpropuesta" element={<AbonarPropuesta />} />

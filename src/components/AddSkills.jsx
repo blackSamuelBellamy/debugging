@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { DataContext } from '../hooks/DataContext';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
-const languages = ['Python', 'JavaScript', 'Java', 'C++', 'PHP', 'C#', 'Swift', 'TypeScript', 'Kotlin', 'Go'];
-const frameworks = ['React', 'Angular', 'Vue.js', 'Ruby on Rails', 'Django', 'Spring', 'Express.js', 'Laravel', 'Flask', 'ASP.NET'];
-const databases = ['MySQL', 'PostgreSQL', 'Oracle', 'MongoDB', 'Microsoft SQL Server', 'SQLite', 'Cassandra', 'Redis', 'Firebase Realtime Database', 'Amazon Aurora'];
+
 
 export default function AddSkills() {
-  const [selectedLanguages, setSelectedLanguages] = useState([]);
-  const [selectedFrameworks, setSelectedFrameworks] = useState([]);
-  const [selectedDatabases, setSelectedDatabases] = useState([]);
+  const { lenguajes, frameworks, basedatos, setSelectedLanguages, setSelectedFrameworks,
+    setSelectedDatabases, selectedDatabases, selectedFrameworks, selectedLanguages } = useContext(DataContext)
+
 
   const handleLanguageChange = (event) => {
     const language = event.target.value;
@@ -46,34 +46,57 @@ export default function AddSkills() {
   const handleSaveLanguages = () => {
 
     if (selectedLanguages.length === 0) {
-      alert("Por favor selecciona al menos un lenguaje de programación");
-      return;
+      Swal.fire({
+        icon: "error",
+        title: "Por favor selecciona al menos un lenguaje de programación",
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Datos Guardados",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
-    console.log(selectedLanguages);
-    // Your code to save selected languages goes here
   };
 
   const handleSaveFrameworks = () => {
     if (selectedFrameworks.length === 0) {
-      alert("Por favor selecciona al menos un Framework");
-      return;
+      Swal.fire({
+        icon: "error",
+        title: "Por favor selecciona al menos un Framework",
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Datos Guardados",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
-
-    console.log(selectedFrameworks);
-
-    // Your code to save selected frameworks goes here
   };
 
   const handleSaveDatabases = () => {
 
     if (selectedDatabases.length === 0) {
-      alert("Por favor selecciona al menos una opción de bases de datos");
-      return;
+      Swal.fire({
+        icon: "error",
+        title: "Por favor selecciona al menos una opción de bases de datos",
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Datos Guardados",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
-
-
-    console.log(selectedDatabases);
-    // Your code to save selected databases goes here
   };
 
   return (
@@ -81,7 +104,7 @@ export default function AddSkills() {
       <h2>Ingresa tus skills más relevantes</h2>
 
       <h3>Lenguajes de programación</h3>
-      {languages.map(language => (
+      {lenguajes.map(language => (
         <Form.Check
           key={language}
           type="checkbox"
@@ -91,7 +114,7 @@ export default function AddSkills() {
           checked={selectedLanguages.includes(language)}
         />
       ))}
-      <Button  id='button-skills' variant="primary" className="consolas-font" onClick={handleSaveLanguages}>Guardar Lenguajes</Button>
+      <Button id='button-skills' variant="primary" className="consolas-font" onClick={handleSaveLanguages}>Guardar Lenguajes</Button>
 
       <h3>Frameworks</h3>
       {frameworks.map(framework => (
@@ -107,7 +130,7 @@ export default function AddSkills() {
       <Button id='button-skills' variant="primary" className="consolas-font" onClick={handleSaveFrameworks}>Guardar Frameworks</Button>
 
       <h3>Bases de datos</h3>
-      {databases.map(database => (
+      {basedatos.map(database => (
         <Form.Check
           key={database}
           type="checkbox"

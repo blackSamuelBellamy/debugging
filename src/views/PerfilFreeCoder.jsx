@@ -1,68 +1,62 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Button, Card, ListGroup, Table } from "react-bootstrap";
 import { FaMoneyBillWave } from "react-icons/fa";
-import { DataContext } from "../hooks/DataContext";
-import Navegacion from "../components/Navegacion";
+
+import axios from "axios";
 
 export default function PerfilFreecoder() {
-  const [programadorDetalle, setProgramadorDetalle] = useState({});
-  const [ProgramadorStack, setProgramadorStack] = useState([]);
-  const { coders } = useContext(DataContext);
+  const [coder, setCoder] = useState('')
+
 
   const navigate = useNavigate();
 
   const irContacto = (id) => {
-    navigate(`/contacto/${id}`);
+    navigate(`/contactarfreecoder/${id}`);
     console.log(id);
   };
-  const { id } = useParams();
+
+  const { id } = useParams()
 
   useEffect(() => {
-    if (coders && coders.length > 0) {
-      const datosProgramador = coders.find(
-        (programador) => programador.id === id
-      );
-      if (datosProgramador !== undefined) {
-        setProgramadorDetalle(datosProgramador);
-        setProgramadorStack(datosProgramador.area || []);
-      }
-    }
-  }, [id, coders]);
-
+    axios.get(import.meta.env.VITE_MAIN_API + '/perfil/' + id)
+      .then(res => {
+        setCoder(res.data[0])
+      })
+      .catch(err => console.log(err.message))
+  }, [])
   return (
     <div className="maincontainer">
       <div className="row">
         <div className="col-xl-3 col-md-4 col-sm-12  ajustes-card">
           <Card className="maincontainer">
             <Card.Title className="card-nombre ">
-              {programadorDetalle.nombre} {programadorDetalle.apellido}
-              <h2>Nombre Programador: Mary Freecoder</h2>
+              <h2>Nombre Programador: {coder.nombre} {coder.apellido}</h2>
             </Card.Title>
             <Card.Img
               variant="top"
               className="maincontainer"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNGO-vi7hcHF9yzYNnDkM6QXBzWf86zJKDyw&usqp=CAU"
+              src={coder.foto_url}
               alt="foto-perfil"
             />
 
             <ListGroup className="list-group-flush">
-              {ProgramadorStack.map((area) => (
-                <ListGroup.Item key={area}>{area}</ListGroup.Item>
-              ))}
+              <ListGroup.Item >{coder.area}</ListGroup.Item>
+
               <div className="maincontainer">
                 <p>Stack tecnológico:</p>
                 <ul>
-                  <li>Javascript</li>
-                  <li>React</li>
-                  <li>Postgres</li>
+                  {coder.lenguajes && coder.lenguajes.map((x, i) => <li key={i}>{x}</li>)}
+                  {coder.frameworks && coder.frameworks.map((x, i) => <li key={i}>{x}</li>)}
+                  {coder.basedatos && coder.basedatos.map((x, i) => <li key={i}>{x}</li>)}
                 </ul>
+
               </div>
               <div className="maincontainer">
                 <p className="precio-texto">Valor hora</p>
                 <FaMoneyBillWave className="icono" />
-                <p className="precio-texto">$15.000</p>
+                <p className="precio-texto">{coder.valor_hora}</p>
               </div>
             </ListGroup>
           </Card>
@@ -71,7 +65,7 @@ export default function PerfilFreecoder() {
             {" "}
             <Button
               type="submit"
-              onClick={() => irContacto(programadorDetalle.id)}
+              onClick={() => irContacto(coder.id)}
             >
               Contactar Freecoder
             </Button>
@@ -84,81 +78,45 @@ export default function PerfilFreecoder() {
             <br />
 
             <p className="resumen-texto">
-              Resumen principales habilidades del Freecoder
+              {coder.portafolio}
             </p>
           </div>
           <br />
           <br />
-          <h2>Repositorios</h2>
+          <h2>Repositorio:</h2>
           <div className="repositorio maincontainer">
             <Table>
               <tbody>
                 <tr>
-                  <td>Repositorio github</td>
                   <td>
-                    <a href={programadorDetalle.link_github}>
-                      {programadorDetalle.link_github}
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Repositorio vercel</td>
-                  <td>
-                    <a href={programadorDetalle.link_vercel}>
-                      {programadorDetalle.link_vercel}
+                    <a href={coder.repositorio_url}>
+                      {coder.repositorio_url}
                     </a>
                   </td>
                 </tr>
               </tbody>
             </Table>
           </div>
-
-          <h2>Principales Proyectos Desarrollados</h2>
+          <h2>Reseña</h2>
           <br />
           <div className="repositorio maincontainer">
             <Table>
               <tbody>
                 <tr>
-                  <td>
-                    Portafolio 1: Explicación breve del proyecto y sus
-                    caterterísticas.
-                  </td>
-                  <td>
-                    <a href={programadorDetalle.link_github}>
-                      {programadorDetalle.link_github}
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Portafolio 2: Explicació breve del proyecto y sus
-                    caterterísticas.
-                  </td>
-                  <td>
-                    <a href={programadorDetalle.link_vercel}>
-                      {programadorDetalle.link_vercel}
-                    </a>
-                  </td>
+                  {coder.resenha}
                 </tr>
               </tbody>
             </Table>
           </div>
-
-          <h2>BIO</h2>
           <br />
           <div className="bio">
-            <p>{programadorDetalle.biografia}</p>
-            <p>Resumen breve del free lancer</p>
-          </div>
-          <br />
-
-          <h2>Mi oferta de valor</h2>
-          <div className="oferta-de-valor">
-            <br />
-            <p>
-              Explicación breve de la oferta de valor, aspectos funcionales,
-              técnicos y otros.
-            </p>
+            <h2>Mi oferta de valor</h2>
+            <div className="oferta-de-valor">
+              <br />
+              <p>
+                {coder.oferta_valor}
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -46,6 +46,7 @@
 
 .coderBoxCards {
     margin: 20px;
+    cursor: pointer;
 }
 
 .single-box {

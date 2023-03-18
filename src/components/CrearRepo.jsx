@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 import { Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export default function CrearRepo() {
+  const { repositorio_url, setRepositorio_url, resenha, setResenha } = useContext(DataContext)
+
   const [repositoryType, setRepositoryType] = useState("github");
-  const [repositoryUrl, setRepositoryUrl] = useState("");
-  const [repositoryReview, setRepositoryReview] = useState("");
   const [touched, setTouched] = useState(false);
 
   const handleRepositoryTypeChange = (event) => {
@@ -12,11 +14,11 @@ export default function CrearRepo() {
   };
 
   const handleRepositoryUrlChange = (event) => {
-    setRepositoryUrl(event.target.value);
+    setRepositorio_url(event.target.value);
   };
 
   const validateRepositoryReview = () => {
-    if (repositoryReview.length < 20 || repositoryReview.length > 500) {
+    if (resenha.length < 20 || resenha.length > 500) {
       return "La reseña del repositorio debe tener entre 20 y 500 caracteres.";
     }
   };
@@ -34,11 +36,21 @@ export default function CrearRepo() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (repositoryReview.length < 20) {
-      alert("La reseña del repositorio debe tener al menos 20 caracteres.");
-      return;
-    }
-    // save repository data here
+    if (resenha.length < 20) {
+      Swal.fire({
+        icon: "error",
+        title: "La reseña del repositorio debe tener al menos 20 caracteres.",
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "Datos guardados.",
+        showConfirmButton: false,
+        timer: 1500,
+    })
+  }
   };
 
   return (
@@ -70,11 +82,11 @@ export default function CrearRepo() {
             onChange={(event) => {
               const inputText = event.target.value;
               if (inputText.length <= 500) {
-                setRepositoryReview(inputText);
+                setResenha(inputText);
               }
               setTouched(true);
             }}
-            value={repositoryReview}
+            value={resenha}
             maxLength={500}
             placeholder="La reseña debe tener entre 20 y 500 caracteres"
             isInvalid={getValidationState() === "error"}
@@ -87,7 +99,7 @@ export default function CrearRepo() {
           <Form.Control
             type="url"
             required
-            value={repositoryUrl}
+            value={repositorio_url}
             onChange={handleRepositoryUrlChange}
           />
         </Form.Group>

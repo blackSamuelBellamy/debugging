@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 import { Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
+
 
 export default function CrearOfertaValor() {
-  const [text, setText] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const { oferta_valor, setOferta_valor, foto_url, setFoto_url, data,
+    selectedLanguages, selectedFrameworks, selectedDatabases, portafolio, repositorio_url,
+    resenha, setLoad } = useContext(DataContext)
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (event) => {
     const inputText = event.target.value;
     if (inputText.length <= 500) {
-      setText(inputText);
+      setOferta_valor(inputText);
       if (inputText.length < 20) {
         setErrorMessage("La oferta de valor debe tener al menos 20 caracteres");
       } else {
@@ -18,26 +22,41 @@ export default function CrearOfertaValor() {
     }
   };
 
+  const convertToBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => resolve(fileReader.result)
+      fileReader.onerror = err => reject(err)
+    })
+  }
 
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageURL = URL.createObjectURL(file);
-      setImageURL(imageURL);
-      document.getElementById('submit-button').disabled = false;
-    } else {
-      setImageURL('');
-      document.getElementById('submit-button').disabled = true;
-      setErrorMessage('Por favor selecciona una imagen.');
-      alert('Por favor selecciona una imagen.');
+  const handleImage = async e => {
+    if (e.target.files) {
+      const resultado = await convertToBase64(e.target.files[0])
+      setFoto_url(resultado)
     }
-  };
+  }
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
-    console.log(text, imageURL);
-    // Your code to handle form submission goes here
+    const { nombre, apellido, password: clave, edad, email, area, linkedin, valor_hora = 10_000, telefono } = data
+    const result = {
+      personalInformation: {
+        nombre, apellido, clave, foto_url, edad, email, area, repositorio_url, linkedin,
+        resenha, telefono, portafolio, presupuesto: parseInt(valor_hora * 40), oferta_valor, valor_hora
+      }, frameworks: selectedFrameworks,
+      basedatos: selectedDatabases,
+      lenguajes: selectedLanguages
+    }
+    setLoad(result)
+    Swal.fire({
+      icon: "success",
+      title: "Datos guardados.",
+      showConfirmButton: false,
+      timer: 1500,
+    })
   };
 
   return (
@@ -55,7 +74,7 @@ export default function CrearOfertaValor() {
               rows={3}
               required
               maxLength={500}
-              value={text}
+              value={oferta_valor}
               placeholder="La reseña debe tener entre 20 y 500 caracteres"
               onChange={handleChange}
             />
@@ -72,15 +91,15 @@ export default function CrearOfertaValor() {
             className="input-valor"
             type="file"
             accept=".png, .jpg, .jpeg, .bmp, .gif, .tiff"
-            onChange={handleImageUpload}
+            onChange={handleImage}
             required
           />
         </div>
         <br />
-        <Button variant="primary" type="submit" className="consolas-font" id="submit-button" disabled={!imageURL} >
+        <Button variant="primary" type="submit" className="consolas-font" id="submit-button" >
           Guardar Oferta de Valor
         </Button>
       </Form>
     </div>
   );
-}
+  }

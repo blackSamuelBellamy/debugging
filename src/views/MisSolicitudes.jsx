@@ -14,9 +14,13 @@ export default function MisSolicitudes() {
   //  const { isSaving, setIsSaving } = useContext(DataContext);
   const [orders, setOrders] = useState([]);
 
+  const coderToken = localStorage.getItem('coderToken')
   useEffect(() => {
-    // Fetch the data from your database here
-    // Set the data to the 'orders' state variable
+    axios.get('http://localhost:5500/missolicitudes', {
+      headers: { Authorization: `Bearer ${coderToken}`}
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err.message))
   }, []);
 
   /*   const handleSaveClick = () => {

@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Pagination, Autoplay } from "swiper"
 import { useRef, useEffect, useContext } from 'react'
 import { DataContext } from '../hooks/DataContext'
+import { useNavigate } from 'react-router-dom'
 import $ from 'jquery'
 import 'jquery.ripples/dist/jquery.ripples-min'
 import "swiper/css"
@@ -11,9 +12,14 @@ import './styles/carrusel.css'
 
 const Carrusel = () => {
 
-    const { coders } = useContext(DataContext)
+    const {programadores} = useContext(DataContext)
     const myCanvas = useRef(null)
-
+    const Navigate = useNavigate()
+    const handleClick = e => {
+      const id = e.target.alt
+      Navigate('/perfil/' + id)
+    }
+  
     useEffect(() => {
         $(myCanvas.current).ripples({
             resolution: 512,
@@ -46,9 +52,9 @@ const Carrusel = () => {
               modules={[EffectCoverflow, Pagination, Autoplay]}
               className="mySwiper"
             >
-              { coders.map((pics, index) => 
-                <SwiperSlide key={index} className= 'cardContainer'> 
-                  <img src={pics.url} alt={`pic${pics.id}`} />
+              {programadores && programadores.map((pics, index) => 
+                <SwiperSlide key={index} className= 'cardContainer' onClick={handleClick}> 
+                  <img src={pics.foto_url} alt={pics.id} />
                 </SwiperSlide>
               )}
             </Swiper>

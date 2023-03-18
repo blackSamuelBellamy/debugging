@@ -10,27 +10,25 @@ const Busqueda = () => {
     //Navigate para busqueda de coders
     const navigate = useNavigate();
     const perfilFreecoder = (id) => {
-        navigate(`/perfilfreecoder/${id}`);
-        console.log(id);
+        navigate(`/perfil/${id}`);
     }
 
 
-    const { freeCoders, programadores } = useContext(DataContext)
-    console.log(programadores)
+    const {programadores } = useContext(DataContext)
     return (
         <>
             <Filtrador />
             <div className="codersWrap">
                 <div className="coderContainer">
-                    {freeCoders.map((coders, index) =>
+                    {programadores.map((coders, index) =>
                         <div className="coderBoxCards" key={index}>
                             <div className="single-box">
-                                <div className="coderBox-content">
-                                    <img className="sides side-1" src={coders.url} alt={coders.id} />
+                                <div className="coderBox-content" onClick={() => perfilFreecoder(coders.id)}>
+                                    <img className="sides side-1" src={coders.foto_url} alt={coders.id} />
                                     <div className="sides side-2">
                                         <div className="contentCoders">
-                                            <h2 onClick={() => perfilFreecoder(coders.id)}>{`${coders.nombre}`}</h2>
-                                            <p>{coders.descripcion}</p>
+                                            <h2>{`${coders.nombre} ${coders.apellido}`}</h2>
+                                            <p>{coders.oferta_valor}</p>
                                             <div className='socials'>
                                                 <AiFillGithub className='icons' />
                                                 <AiFillLinkedin className='icons' />

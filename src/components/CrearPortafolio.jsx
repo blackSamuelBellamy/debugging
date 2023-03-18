@@ -1,24 +1,36 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 import { Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export default function CrearPortafolio() {
-  const [text, setText] = useState("");
+  const { portafolio, setPortafolio } = useContext(DataContext);
 
   const handleChange = (event) => {
     const inputText = event.target.value;
     if (inputText.length <= 500) {
-      setText(inputText);
+      setPortafolio(inputText);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (text.length >= 20 && text.length <= 500) {
-      console.log(text);
-      // Your code to handle form submission goes here
+    if (portafolio.length >= 20 && portafolio.length <= 500) {
+      Swal.fire({
+        icon: "success",
+        title: "Reseña añadida",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     } else {
-      alert("La reseña debe tener entre 20 y 500 caracteres.");
+      Swal.fire({
+        icon: "error",
+        title: "La reseña debe tener entre 20 y 500 caracteres.",
+        showConfirmButton: false,
+        timer: 1500,
+      })
     }
+
   };
 
   return (
@@ -35,7 +47,7 @@ export default function CrearPortafolio() {
               rows={3}
               maxLength={500}
               required
-              value={text}
+              value={portafolio}
               onChange={handleChange}
               placeholder="La reseña debe tener entre 20 y 500 caracteres"
             />

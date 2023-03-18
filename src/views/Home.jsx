@@ -1,4 +1,4 @@
-import { useContext} from 'react'
+import { useContext, useEffect} from 'react'
 import Spline from '@splinetool/react-spline'
 import Typewriter from 'typewriter-effect'
 import { DataContext } from '../hooks/DataContext'
@@ -7,9 +7,13 @@ import Nav from '../components/Nav'
 import Carrusel from '../components/Carrusel'
 import Footer from '../components/Footer'
 
+
 export default function Home() {
 
+
+
   const { hamburgerDisplay } = useContext(DataContext)
+  
   return (
     <div className="homeContainer">
       {/* <Nav /> */}

@@ -7,33 +7,21 @@ import Navegacion from "../components/Navegacion";
 import Swal from "sweetalert2";
 
 export default function ContactarFreecoder() {
-  const { coders } = useContext(DataContext);
-
+  const { programadores } = useContext(DataContext);
   const { id } = useParams();
   const [languages, setLanguages] = useState([]);
   const [programadorDetalle, setProgramadorDetalle] = useState([]);
-  const [ProgramadorStack, setProgramadorStack] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [comments, setComments] = useState("");
 
-  useEffect(() => {
-    const obtenerDatos = () => {
-      if (coders) {
-        const datosProgramador = coders.find(
-          (programador) => programador.id === id
-        );
-        if (datosProgramador !== undefined) {
-          setProgramadorDetalle(datosProgramador || []);
-          setProgramadorStack(datosProgramador.area || []);
-        }
-      }
-    };
 
-    obtenerDatos();
-  }, [id, coders]);
+  useEffect(() => {
+    const datosProgramador = programadores.find(x => x.id === Number(id))
+    setProgramadorDetalle(datosProgramador)
+  }, [])
 
   const handleLanguagesChange = (event) => {
     const selectedLanguages = Array.from(
@@ -85,6 +73,7 @@ export default function ContactarFreecoder() {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+
   };
 
   const handleDescriptionChange = (event) => {
@@ -103,15 +92,13 @@ export default function ContactarFreecoder() {
       text: "La solicitud ha sido enviada con éxito al Freecoder.",
     });
   };
-  
-
   return (
     <>
       <div className="maincontainer">
-        {/* <Navegacion /> */}
+        {/*   {/* <Navegacion /> */}
         <div className="row">
           <div className="col-xl-3 col-md-4 col-sm-12  secc-izq maincontainer">
-            <h2>Nombre Programador: Mary Freecoder</h2>
+            <h2>Nombre Programador: </h2>
 
             <Card className="maincontainer">
               <Card.Title className="card-nombre">
@@ -119,21 +106,19 @@ export default function ContactarFreecoder() {
               </Card.Title>
               <Card.Img
                 variant="top"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNGO-vi7hcHF9yzYNnDkM6QXBzWf86zJKDyw&usqp=CAU"
+                src={programadorDetalle.foto_url}
                 alt="foto-perfil"
               />
 
               <ListGroup className="list-group-flush">
-                {ProgramadorStack.map((area) => (
-                  <ListGroup.Item key={area}>{area}</ListGroup.Item>
-                ))}
+                <ListGroup.Item>{programadorDetalle.area}</ListGroup.Item>
               </ListGroup>
             </Card>
 
             <div className="precio-horas maincontainer">
               <h4 className="precio-texto">Valor hora</h4>
               <FaMoneyBillWave className="icono" />
-              <h4 className="precio-texto">15.000</h4>
+              <h4 className="precio-texto">{programadorDetalle.valor_hora}</h4>
             </div>
           </div>
 
@@ -375,10 +360,10 @@ export default function ContactarFreecoder() {
 
             </Form>
             <Form onSubmit={handleFormSubmit}>
-                <Button variant="primary" type="submit">
-                  Enviar solicitud
-                </Button>
-              </Form>
+              <Button variant="primary" type="submit">
+                Enviar solicitud
+              </Button>
+            </Form>
 
           </div>
         </div>
