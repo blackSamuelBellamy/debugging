@@ -23,8 +23,8 @@ export default function MisSolicitudes() {
   useEffect(() => {
     if (!localStorage.getItem('coderToken')) Navigate('/login')
     else {
-      axios
-        .get("http://localhost:5500/missolicitudes", {
+    
+      axios.get("http://localhost:5500/missolicitudes", {
           headers: { Authorization: `Bearer ${coderToken}` },
         })
         .then((res) => console.log(res))

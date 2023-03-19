@@ -32,7 +32,7 @@ export default function Home() {
         <div className="spline">
           <Spline scene="https://prod.spline.design/cWEXYurkBF7s1djN/scene.splinecode" className='splineBalls' />
         </div>
-        <Carrusel />
+       <Carrusel />
       </div>
       <div className="homeFooter">
         <Footer />

@@ -17,7 +17,7 @@ function ConfirmRequest() {
     if (!localStorage.getItem('clienteToken')) Navigate('/home')
     else {
       const token = localStorage.getItem('clienteToken');
-      axios.get('http://localhost:5500/confirmarorden'/* import.meta.env.VITE_MAIN_API + '/confirmarorden' */,{
+      axios.get(import.meta.env.VITE_MAIN_API + '/confirmarorden',{
         headers: { Authorization: `Bearer ${token}`}
       })
         .then(res => {
