@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function RedactarPropuesta2() {
+  const { crearPropuesta,setCrearpropuesta,setData } = useContext(DataContext)
   const [languages, setLanguages] = useState([]);
   const [frameworks, setFrameworks] = useState([]);
   const [databases, setDatabases] = useState([]);
@@ -10,7 +11,7 @@ function RedactarPropuesta2() {
       event.target.selectedOptions,
       (option) => option.value
     );
-    setLanguages(selectedLanguages);
+    setLanguages(selectedLanguages); // esto corresponde a stack_1
   };
 
   const handleFrameworksChange = (event) => {
@@ -18,7 +19,7 @@ function RedactarPropuesta2() {
       event.target.selectedOptions,
       (option) => option.value
     );
-    setFrameworks(selectedFrameworks);
+    setFrameworks(selectedFrameworks); // esto corresponde a stack_2
   };
 
   const handleDatabasesChange = (event) => {
@@ -26,7 +27,7 @@ function RedactarPropuesta2() {
       event.target.selectedOptions,
       (option) => option.value
     );
-    setDatabases(selectedDatabases);
+    setDatabases(selectedDatabases); // esto corresponde a stack_3
   };
 
   const handleSaveButtonClick = () => {
@@ -56,7 +57,7 @@ function RedactarPropuesta2() {
             id="languages"
             multiple
             required
-            onChange={handleLanguagesChange}
+            onChange={handleLanguagesChange} //corresponde en base de datos propuesta_coder a stack_1
             style={{ width: "300px" }}
           >
             {[
@@ -89,7 +90,7 @@ function RedactarPropuesta2() {
         <select
           id="frameworks"
           multiple
-          onChange={handleFrameworksChange}
+          onChange={handleFrameworksChange}  //corresponde en base de datos propuesta_coder a stack_2
           style={{ width: "300px" }}
         >
           {[
@@ -123,7 +124,7 @@ function RedactarPropuesta2() {
         <select
           id="databases"
           multiple
-          onChange={handleDatabasesChange}
+          onChange={handleDatabasesChange}  //corresponde en base de datos propuesta_coder a stack_3
           style={{ width: "300px" }}
         >
           {[

@@ -3,20 +3,22 @@ import React, { useState } from "react";
 function RedactarPropuesta1() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const { crearPropuesta,setCrearpropuesta,setData } = useContext(DataContext) //esto se importa
+  
   const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+    setTitle(event.target.value); //corresponde en base de datos propuesta_coder a _propuesta_titulo
   };
+  
 
   const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+    setDescription(event.target.value); //corresponde en base de datos propuesta_coder a descripcion_propuesta
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // save data in browser memory
-    localStorage.setItem("title", title);
-    localStorage.setItem("description", description);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formulario = new FormData(mainForm.current)
+    const data = Object.fromEntries([...formulario.entries()])
+    setData(data) 
   };
 
   return (
@@ -28,9 +30,9 @@ function RedactarPropuesta1() {
           <label htmlFor="title">Título del proyecto:</label>
           <input
             type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
+            id="title" //propuesta_titulo
+            value={title} // propuesta_titulo
+            onChange={handleTitleChange} //propuesta_titulo
             placeholder="Título del proyecto, tope de 50 caracteres"
             required
             maxLength={50}
@@ -46,8 +48,8 @@ function RedactarPropuesta1() {
               <textarea
                 id="description"
                 className="my-textarea"
-                value={description}
-                onChange={handleDescriptionChange}
+                value={description} //descripcion_propuesta
+                onChange={handleDescriptionChange} //descripcion_propuesta
                 placeholder="Descripción detallada de aspectos funcionales"
                 required
                 maxLength={1000}

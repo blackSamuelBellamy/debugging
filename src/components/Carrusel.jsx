@@ -36,6 +36,7 @@ const Carrusel = () => {
               grabCursor={true}
               centeredSlides={true}
               slidesPerView={"auto"}
+              observer={true}
               loop={true}
               coverflowEffect={{
                 rotate: 36,

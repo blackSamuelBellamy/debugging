@@ -13,15 +13,17 @@ const Busqueda = () => {
         navigate(`/perfil/${id}`);
     }
 
+    const { programadoresFiltrados } = useContext(DataContext)
 
-    const {programadores } = useContext(DataContext)
+
+
     return (
         <>
             <Filtrador />
             <div className="codersWrap">
                 <div className="coderContainer">
-                    {programadores.map((coders, index) =>
-                        <div className="coderBoxCards" key={index}>
+                    {programadoresFiltrados.map((coders, index) =>
+                        <div className="coderBoxCards" key={index} >
                             <div className="single-box">
                                 <div className="coderBox-content" onClick={() => perfilFreecoder(coders.id)}>
                                     <img className="sides side-1" src={coders.foto_url} alt={coders.id} />

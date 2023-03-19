@@ -42,13 +42,6 @@ const Nav = () => {
           >
             Buscar Coders
           </NavLink>
-
-          <NavLink
-            to="/perfilfreecoder"
-            className={hamburgerDisplay ? "liDisplayed" : "li displaynone"}
-          >
-            Perfil Freecoder
-          </NavLink>
           <NavLink
             to="/contactarfreecoder"
             className={hamburgerDisplay ? "liDisplayed" : "li displaynone"}
@@ -99,12 +92,6 @@ const Nav = () => {
           <div className="dropdown">
             <button className="dropbtn">Menu</button>
             <div className="dropdown-content">
-              <NavLink
-                to="/perfilfreecoder"
-                className={hamburgerDisplay ? "liDisplayed" : "li"}
-              >
-                Perfil Freecoder
-              </NavLink>
               <NavLink
                 to="/contactarfreecoder"
                 className={hamburgerDisplay ? "liDisplayed" : "li"}

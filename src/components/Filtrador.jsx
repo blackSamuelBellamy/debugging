@@ -1,32 +1,35 @@
 import { useState, useContext } from 'react'
 import { DataContext } from '../hooks/DataContext'
-import { NavLink } from 'react-router-dom'
-import { AiOutlineMail } from 'react-icons/ai'
 import './styles/filtrador.css'
-import mainLogo from '../assets/img/mainLogo.png'
 
 const Filtrador = () => {
 
-  const { filtradorDisplay, setFiltradorDisplay, setFreeCoders, coders, freeCoders } = useContext(DataContext)
-  const [area, setArea] = useState(false)
-  const [coder, setCoder] = useState(false)
-  const [language, setLanguage] = useState(false)
+  const { filtradorDisplay, setFiltradorDisplay, programadoresFiltrados, setProgramadoresFiltrados, programadores } = useContext(DataContext)
 
-  const filtradorDisplayed = () => setFiltradorDisplay(!filtradorDisplay)
-  const displaying = state => state
-  const filtradorArea = e => {
-    const filtroArea = coders.filter(coder => coder.area.includes(e.target.dataset.value))
-    setFreeCoders(filtroArea)
+  const [area, setArea] = useState(false);
+  const [coder, setCoder] = useState(false);
+  const [language, setLanguage] = useState(false);
+
+  const filtradorDisplayed = () => setFiltradorDisplay(!filtradorDisplay);
+  const displaying = state => state;
+  const filtradorArea = (e) => {
+    const filtroArea = programadoresFiltrados.filter(coder => coder.area.includes(e.target.dataset.value))
+    setProgramadoresFiltrados(filtroArea)
   }
-  const filtradorNombre = e => {
-    const filtroNombre = freeCoders.filter(filtro => filtro.nombre === e.target.textContent)
-    setFreeCoders(filtroNombre)
+  const filtradorNombre = (e) => {
+    const filtroNombre = programadoresFiltrados.filter(filtro => filtro.nombre === e.target.textContent)
+    setProgramadoresFiltrados(filtroNombre)
   }
 
-  const filtradorLenguaje = e => {
-    const filtroLenguaje = coders.filter(coder => coder.lenguajes.includes(e.target.dataset.value))
-    setFreeCoders(filtroLenguaje)
+  const filtradorLenguaje = (e) => {
+    const filtroLenguaje = programadoresFiltrados.filter(coder => coder.lenguajes.includes(e.target.dataset.value))
+    setProgramadoresFiltrados(filtroLenguaje)
   }
+
+  const resetFiltrador = () => {
+    setProgramadoresFiltrados(programadores);
+  }
+
   return (
     <div className='filtrador'>
       <button onClick={filtradorDisplayed} className={filtradorDisplay ? 'filtradorHamburger filtradorCruz' : 'filtradorHamburger'}>
@@ -37,7 +40,8 @@ const Filtrador = () => {
       <div className={filtradorDisplay ? "menuBusqueda busquedaResponsive" : "menuBusqueda"} >
         <div className="inputBoxSearch inputAreaName">
           <p className='filtroName areaFiltro'>Area</p>
-          <input type="text"
+          <input
+            type="text"
             name='area'
             className='boxSearchInput'
             onFocus={() => setArea(true)}
@@ -45,9 +49,9 @@ const Filtrador = () => {
           />
 
           <div className={displaying(area) ? 'hiddenBox filterCoderArea hidden' : 'hiddenBox filterCoderArea'}>
-            <p onClick={filtradorArea} className='textoArea' data-value='front'>Front-End</p>
-            <p onClick={filtradorArea} className='textoArea' data-value='back' >Back-End</p>
-            <p onClick={filtradorArea} className='textoArea' data-value='full' >Full-Stack</p>
+            <p onClick={filtradorArea} className='textoArea' data-value='Frontend'>Front-End</p>
+            <p onClick={filtradorArea} className='textoArea' data-value='Backend' >Back-End</p>
+            <p onClick={filtradorArea} className='textoArea' data-value='Fullstack' >Full-Stack</p>
           </div>
         </div>
         <div className="inputBoxSearch inputCoderName">
@@ -60,24 +64,28 @@ const Filtrador = () => {
             onBlur={() => setTimeout(() => setCoder(false), 220)}
           />
           <div className={displaying(coder) ? 'hiddenBox filterCoderName hidden' : 'hiddenBox filterCoderName'}>
-            {freeCoders.map((coder, index) =>
+            {programadoresFiltrados.map((coder, index) =>
               <p className='codersName' key={index} onClick={filtradorNombre}>{coder.nombre}</p>)}
           </div>
         </div>
         <div className="inputBoxSearch inputLanguageName">
           <p className='filtroName lenguajeFiltro'>Lenguaje</p>
-          <input type="text"
+          <input
+            type="text"
             name='Language'
             className='boxSearchInput'
             onFocus={() => setLanguage(true)}
             onBlur={() => setTimeout(() => setLanguage(false), 220)}
           />
           <div className={displaying(language) ? 'hiddenBox filterCoderLanguage hidden' : 'hiddenBox filterCoderLanguage'}>
-            <p data-value='java' onClick={filtradorLenguaje}>Java</p>
-            <p data-value='python' onClick={filtradorLenguaje}>Python</p>
-            <p data-value='javascript' onClick={filtradorLenguaje}>JavaScript</p>
+            <p data-value='Java' onClick={filtradorLenguaje}>Java</p>
+            <p data-value='Python' onClick={filtradorLenguaje}>Python</p>
+            <p data-value='JavaScript' onClick={filtradorLenguaje}>JavaScript</p>
           </div>
         </div>
+        <button className='boton' onClick={resetFiltrador}>
+          Limpiar
+        </button>
       </div>
     </div>
   )

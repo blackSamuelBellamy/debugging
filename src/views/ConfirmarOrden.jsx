@@ -1,11 +1,44 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card, ListGroup, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navegacion from "../components/Navegacion";
+import Swal from "sweetalert2";
+
 
 function ConfirmRequest() {
   const numeroDeSeguimiento = "123456"; // importar nombre de API o base de datos
   const coderName = "Mary Free Coder"; // importar nombre de API o base de datos
 
+  const [data, setData] = useState(null)
+  const Navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('clienteToken')) Navigate('/home')
+    else {
+      const token = localStorage.getItem('clienteToken');
+      axios.get('http://localhost:5500/confirmarorden'/* import.meta.env.VITE_MAIN_API + '/confirmarorden' */,{
+        headers: { Authorization: `Bearer ${token}`}
+      })
+        .then(res => {
+          console.log(res.data)
+          setData(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+          Swal.fire({
+            icon: "error",
+            title: 'hubo un problema',
+            text: "Revisa en tu correo la orden de solicitud, de lo contrario ponte en contacto con nosotros",
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        })
+    }
+
+  }, [])
+
+  console.log(data)
   return (
     <>
       <div className="maincontainer">

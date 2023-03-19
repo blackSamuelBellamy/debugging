@@ -1,5 +1,4 @@
 import { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Spline from "@splinetool/react-spline";
 import { FaKey, FaUser, FaLock, FaQuestionCircle } from "react-icons/fa";
@@ -8,14 +7,13 @@ import { DataContext } from "../hooks/DataContext";
 import "../components/styles/form.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const { setCorreo, correo, setClave, clave } = useContext(DataContext);
+  const { setCorreo, correo, setClave, clave} = useContext(DataContext);
 
+ const Navigate = useNavigate()
   const form = useRef(null);
-  const navigate = useNavigate();
-
-  const handleClick = () => navigate("/home");
 
   const emailValidation = (correo) => {
     const mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
@@ -60,26 +58,27 @@ const Form = () => {
     } else {
       setClave(password);
       setCorreo(email);
-      axios.post(import.meta.env.VITE_MAIN_API + '/login', {email, password})
-      .then(res => {
-        Swal.fire({
-          icon: "success",
-          title: "Usuario validado",
-          showConfirmButton: false,
-          timer: 1500,
+      axios.post(import.meta.env.VITE_MAIN_API + '/login', { email, password })
+        .then(res => {
+          Swal.fire({
+            icon: "success",
+            title: "Usuario validado",
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          localStorage.setItem('coderToken', JSON.stringify(res.data))
+          Navigate('/missolicitudes')
         })
-        localStorage.setItem('coderToken', JSON.stringify(res.data))
-        
-        setTimeout(() => navigate('/missolicitudes'), 1600)
-      }).catch(err => {
-        console.log(err)
-        Swal.fire({
-          icon: "error",
-          title: err.response.data,
-          showConfirmButton: false,
-          timer: 1500,
+        .catch(err => {
+          console.log(err)
+          Swal.fire({
+            icon: "error",
+            title: err.response.data,
+            showConfirmButton: false,
+            timer: 1500,
+          })
         })
-      })
+       
     }
   };
   return (

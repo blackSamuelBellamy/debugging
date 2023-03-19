@@ -1,25 +1,26 @@
 import { useState } from "react";
 
 function RedactarPropuesta3() {
-  const [technologies, setTechnologies] = useState("");
-  const [scope1, setScope1] = useState("");
-  const [hours, setHours] = useState("");
-  const [revisions, setRevisions] = useState("");
-  const [value, setValue] = useState("");
+  const { crearPropuesta,setCrearpropuesta,setData } = useContext(DataContext) //importado de context
+  const [stackOtros, setStackOtros] = useState(""); // corresponde a stack_otros
+  const [alcance, setAlcance] = useState("");//alcance
+  const [horasEstimadas, setHorasEstimadas] = useState("");//horas_estimadas
+  const [CantidadRevisiones, setCantidadRevisiones] = useState("");//cantidad_revisiones
+  const [valorFinal, setValorFinal] = useState(""); //valor_final
   const [hourValue, setHourValue] = useState("");
 
   const handleSave = () => {
-    if (!technologies || !scope1 || !revisions || !hours || !hourValue || !value) {
+    if (!stackOtros || !alcance || !CantidadRevisiones || !horasEstimadas || !hourValue || !valorFinal) {
       alert("Por favor completa todos los campos antes de guardar.");
       return;
     }
 
     const data = {
-      technologies,
-      scope1,
+      stackOtros,
+      alcance,
       hours,
-      revisions,
-      value,
+      CantidadRevisiones,
+      valorFinal,
     };
     localStorage.setItem("projectData", JSON.stringify(data));
   };
@@ -36,10 +37,10 @@ function RedactarPropuesta3() {
         <textarea
           className="my-textarea"
           placeholder="Tecnologías separadas por comas"
-          value={technologies}
+          value={stackOtros}//stack_otros
           maxLength={50}
           required
-          onChange={(e) => setTechnologies(e.target.value)}
+          onChange={(e) => setStackOtros(e.target.value)}  //corresponde en base de datos propuesta_coder a stack_otros
         />
       </div>
       <br />
@@ -48,9 +49,9 @@ function RedactarPropuesta3() {
         <textarea
           className="my-textarea"
           placeholder="Alcances, límites, aspectos no contemplados en el servicio.Ejemplo: No incluye hosting."
-          value={scope1}
+          value={alcance} //alcance
           maxLength={100}
-          onChange={(e) => setScope1(e.target.value)}
+          onChange={(e) => setAlcance(e.target.value)} //corresponde en base de datos propuesta_coder a alcance
         />
       </div>
       <br />
@@ -60,9 +61,9 @@ function RedactarPropuesta3() {
         <input
           type="number"
           placeholder="Revisiones"
-          value={revisions}
+          value={CantidadRevisiones} //cantidad_revisiones
           required
-          onChange={(e) => setRevisions(e.target.value)}
+          onChange={(e) => setCantidadRevisiones(e.target.value)} //corresponde en base de datos propuesta_coder a cantidad_revisiones
         />
       </div>
       <br />
@@ -71,9 +72,9 @@ function RedactarPropuesta3() {
         <input
           type="number"
           placeholder="Horas de desarrollo"
-          value={hours}
+          value={horasEstimadas} //horas_estimadas
           required
-          onChange={(e) => setHours(e.target.value)}
+          onChange={(e) => setHorasEstimadas(e.target.value)} //corresponde en base de datos propuesta_coder a horas_estimadas
         />
       </div>
       <br />
@@ -85,7 +86,7 @@ function RedactarPropuesta3() {
           placeholder="Valor hora"
           value={hourValue}
           required
-          onChange={(e) => setHourValue(e.target.value)}
+          onChange={(e) => setHourValue(e.target.value)} // esta no se ocupara en el backend, se calculara en el front
         />
       </div>
       <br />
@@ -103,8 +104,8 @@ function RedactarPropuesta3() {
         <input
           type="number"
           placeholder="Valor Final"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={valorFinal} //valor_final
+          onChange={(e) => setValorfinal(e.target.value)} //corresponde en base de datos propuesta_coder a valor_final
           style={{
             fontSize: "20px",
             border: "none",

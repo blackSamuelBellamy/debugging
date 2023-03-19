@@ -19,14 +19,16 @@ export const States = ({ children }) => {
             .catch(err => console.log(err.message))
     }, [refresh])
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [correo, setCorreo] = useState('')
     const [clave, setClave] = useState(null)
     const [hamburgerDisplay, setHamburgerDisplay] = useState(false)
     const [filtradorDisplay, setFiltradorDisplay] = useState(false)
     const [coders, setCoders] = useState(Coders)
-    const [freeCoders, setFreeCoders] = useState(Coders)
+    const [freeCoders, setFreeCoders] = useState(JSON.parse(localStorage.getItem('programadores')) || '')
     const [isSaving, setIsSaving] = useState(false)
     const [programadores, setProgramadores] = useState(JSON.parse(localStorage.getItem('programadores')) || '')
+    const [CrearPropuesta, setCrearPropuesta] = useState(JSON.parse(localStorage.getItem('propuesta_coder')) || '')
     const [lenguajes] = useState(JSON.parse(localStorage.getItem('lenguajes')) || '')
     const [basedatos] = useState(JSON.parse(localStorage.getItem('basedatos')) || '')
     const [frameworks] = useState(JSON.parse(localStorage.getItem('frameworks')) || '')
@@ -40,6 +42,7 @@ export const States = ({ children }) => {
     const [foto_url, setFoto_url] = useState("");
     const [data, setData] = useState(null)
     const [load, setLoad] = useState(null)
+    const [programadoresFiltrados, setProgramadoresFiltrados] = useState(programadores);
 
     const allDatas = {
         correo, setCorreo, clave, setClave,
@@ -51,7 +54,8 @@ export const States = ({ children }) => {
         selectedFrameworks, setSelectedFrameworks, selectedDatabases, setSelectedDatabases,
         portafolio, setPortafolio, repositorio_url, setRepositorio_url,
         resenha, setResenha, oferta_valor, setOferta_valor, foto_url, setFoto_url,
-        data, setData, load, setLoad, setRefresh, refresh
+        data, setData, load, setLoad, setRefresh, refresh, isLoggedIn, setIsLoggedIn,
+        programadoresFiltrados, setProgramadoresFiltrados, CrearPropuesta, setCrearPropuesta
     }
 
     return (

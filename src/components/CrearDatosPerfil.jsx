@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useState, useRef, useContext } from "react";
 import { DataContext } from "../hooks/DataContext";
-import { Form, Button } from "react-bootstrap";
-import RangeSlider from "react-bootstrap-range-slider";
+import { Form, Button, FormControl } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 export default function CrearDatosPerfil() {
@@ -173,7 +172,8 @@ export default function CrearDatosPerfil() {
 
         <Form.Group controlId="formRate">
           <Form.Label>Valor por hora: ${rate}</Form.Label>
-          <RangeSlider
+          <FormControl
+            type="number"
             value={rate}
             min={10000}
             max={500000}

@@ -14,7 +14,6 @@ import AbonarPropuesta from "./views/AbonarPropuesta";
 import ConfirmarOrden from "./views/ConfirmarOrden";
 import Seguimiento from "./views/Seguimiento";
 import EnvioPropuesta from "./views/EnvioPropuesta";
-import Navegacion from "./components/Navegacion";
 import ProtectedRoute from "./hooks/protectedRoutes";
 import Nav from "./components/Nav";
 
@@ -24,7 +23,7 @@ const App = () => {
   //  const [state, setState] = useState(initialState);
 
   return (
-    <div className="container">
+    <div>
       <States>
         <BrowserRouter>
           <Nav />
@@ -34,26 +33,8 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/login" element={<Form />} />
-              <Route
-                path="/missolicitudes"
-                element={
-                  <ProtectedRoute
-                    component={<MisSolicitudes />}
-                    isLoggedIn={isLoggedIn}
-                    password={password}
-                  />
-                }
-              />
-              <Route
-                path="/crearpropuesta"
-                element={
-                  <ProtectedRoute
-                    component={<CrearPropuesta />}
-                    isLoggedIn={isLoggedIn}
-                    password={password}
-                  />
-                }
-              />
+              <Route path="/missolicitudes" element={<MisSolicitudes />}/>
+              <Route path="/crearpropuesta" element={<CrearPropuesta />}/>
               <Route path="/busqueda" element={<Busqueda />} />
               <Route path="/perfil/:id" element={<PerfilFreecoder />} />
               <Route path="/crearperfil" element={<CrearPerfil />} />
@@ -74,3 +55,4 @@ const App = () => {
 };
 
 export default App;
+

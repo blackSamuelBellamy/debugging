@@ -1,13 +1,13 @@
 import { Route, Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, isLoggedIn, password, ...rest }) => {
+const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
   if (!isLoggedIn) {
     return <Navigate to='/login' />;
   }
 
-  const storedPassword = localStorage.getItem('password');
+  const coderToken = localStorage.getItem('coderToken');
 
-  if (password !== storedPassword) {
+  if (coderToken === null) {
     return <Navigate to='/login' />;
   }
 

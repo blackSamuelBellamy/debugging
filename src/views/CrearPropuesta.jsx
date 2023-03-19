@@ -11,11 +11,14 @@ import Navegacion from '../components/Navegacion';
 import RedactarPropuesta1 from '../components/RedactarPropuesta1';
 import RedactarPropuesta2 from '../components/RedactarPropuesta2';
 import RedactarPropuesta3 from '../components/RedactarPropuesta3';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function CrearPropuesta() {
   const [isSaving, setIsSaving] = useState(false);
+  const Navigate = useNavigate()
+  !localStorage.getItem('coderToken') && Navigate('/login')
 
   const handleSaveClick = () => {
     setIsSaving(true);
