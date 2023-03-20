@@ -58,7 +58,7 @@ function RedactarPropuesta3() {
 
   const calculateValue = () => {
     const calculatedValue = horasEstimadas * hourValue;
-    setValue(calculatedValue);
+    setHourValue(calculatedValue);
   };
 
   return (

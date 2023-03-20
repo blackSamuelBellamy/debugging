@@ -2,6 +2,7 @@ import { Container, Card } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Navegacion from "../components/Navegacion";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 //Esta es data mock de los coders. Debe reemplazarse por la proveniente de la BD. 
@@ -12,34 +13,38 @@ const temporaryData = {
   clientName: "Francisco",
 };
 
-const handleAcceptProposal =(event) => {
-  event.preventDefault();
-  Swal.fire({
-    title: 'Felicitaciones',
-    text: 'Has aceptado la propuesta',
-    icon: 'success',
-    showCancelButton: false,
-    confirmButtonColor: '#3085d6',
-    confirmButtonText: 'Ir al pago'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Redirect to another component here
-      window.location.href = '/abonarpropuesta';
-    }
-  });
-};
-
-
-const  handleRejectProposal =(event) => {
-  event.preventDefault();
-  Swal.fire({
-    title: 'Lo sentimos :(',
-    text: 'Has decidido no aceptar la propuesta. Puedes intentarlo nuevamente',
-    icon: 'warning'
-  });
-};
 
 function EnvioPropuesta() {
+  const Navigate = useNavigate()
+
+  const handleAcceptProposal =(event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: 'Felicitaciones',
+      text: 'Has aceptado la propuesta',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ir al pago'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to another component here
+        Navigate('/abonarpropuesta');
+      }
+    });
+  };
+
+  const  handleRejectProposal =(event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: 'Lo sentimos :(',
+      text: 'Has decidido no aceptar la propuesta. Puedes intentarlo nuevamente',
+      icon: 'warning'
+    });
+    
+  };
+  
+
   const { userName, date, clientName } = temporaryData;
 
   const title = "Título ingresado por freecoder (Placeholder)";

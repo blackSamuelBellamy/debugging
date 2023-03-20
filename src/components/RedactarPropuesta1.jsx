@@ -4,50 +4,52 @@ import { DataContext } from "../hooks/DataContext";
 function RedactarPropuesta1() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { crearPropuesta,setCrearPropuesta,setData } = useContext(DataContext) //esto se importa
-  
+  const { crearPropuesta, setCrearPropuesta, setData } = useContext(DataContext) //esto se importa
+
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
     localStorage.setItem("propuesta_titulo", event.target.value);
-     //corresponde en base de datos propuesta_coder a propuesta_titulo
+    //corresponde en base de datos propuesta_coder a propuesta_titulo
   };
-  
+
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
     localStorage.setItem("descripcion_propuesta", event.target.value);
-     //corresponde en base de datos propuesta_coder a descripcion_propuesta
+    //corresponde en base de datos propuesta_coder a descripcion_propuesta
   };
 
 
 
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+/* 
     const load = [{
       propuesta_titulo, descripcion_propuesta
     }]
     axios.post(import.meta.env.VITE_MAIN_API + /propuestacoder/ + id, load)
-    .then(res => {
-      localStorage.setItem('clienteToken', JSON.stringify(res.data))
-      Swal.fire({
-        icon: "success",
-        title: "¡Éxito!",
-        text: "La propuesta ha sido enviada con éxito al cliente.",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    })
-    .catch(err => {
-      Swal.fire({
-        icon: "error",
-        title: err.response.data,
-        showConfirmButton: false,
-        timer: 1500,
+      .then(res => {
+        localStorage.setItem('clienteToken', JSON.stringify(res.data))
+        Swal.fire({
+          icon: "success",
+          title: "¡Éxito!",
+          text: "La propuesta ha sido enviada con éxito al cliente.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
-    })
+      .catch(err => {
+        Swal.fire({
+          icon: "error",
+          title: err.response.data,
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }) */
 
+    }
+  
   return (
     <div className="maincontainer">
       <h2>Ingresa acá los detalles de tu propuesta</h2>
@@ -91,7 +93,6 @@ function RedactarPropuesta1() {
       </form>
     </div>
   );
-}
 }
 
 

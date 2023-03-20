@@ -55,7 +55,8 @@ export const States = ({ children }) => {
         portafolio, setPortafolio, repositorio_url, setRepositorio_url,
         resenha, setResenha, oferta_valor, setOferta_valor, foto_url, setFoto_url,
         data, setData, load, setLoad, setRefresh, refresh, isLoggedIn, setIsLoggedIn,
-        programadoresFiltrados, setProgramadoresFiltrados, CrearPropuesta, setCrearPropuesta
+        programadoresFiltrados, setProgramadoresFiltrados, CrearPropuesta, setCrearPropuesta,
+        
     }
 
     return (

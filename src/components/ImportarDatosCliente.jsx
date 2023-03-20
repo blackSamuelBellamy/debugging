@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { DataContext } from "../hooks/DataContext";
+import axios from "axios";
 
 function ImportarDatosCliente() {
+  const { id } = useParams()
   const [descripcion, setDescripcion] = useState("");
   const [stackRequerido1, setStackRequerido1] = useState(""); // corresponde a base de datos solicitudes a  stack_1
   const [stackRequerido2, setStackRequerido2] = useState(""); // corresponde a base de datos solicitudes a  stack_2
@@ -12,8 +15,26 @@ function ImportarDatosCliente() {
  useContext(DataContext);
 
   //useEffect(() => {
-    // Fetch data from a database or API
-    // In this example, we'll use hardcoded values for simplicity
+    const token = localStorage.getItem("coderToken");
+    const regex = /"(.+?)"/;
+    const match = token.match(regex);
+    const valorCoderToken = match[1];
+    const config = {
+      headers: {
+        Authorization: `Bearer ${valorCoderToken}`,
+      },
+    };
+
+    axios
+      .get(import.meta.env.VITE_MAIN_API + `/crearpropuesta/${id}`, config)
+      .then((res) => {
+        setDescripcion(res.data.descripcion_proyecto);
+        setStackRequerido1(res.data.stack_1)
+        setStackRequerido2(res.data.stack_2)
+        setStackRequerido3(res.data_stack_3)
+        setLinkExterno(res.data.boceto)
+      })
+      .catch((err) => console.log(err.message));
    // setDescripcion(
 //"Esta es una explicación breve importada desde la base de datos."
     //);
