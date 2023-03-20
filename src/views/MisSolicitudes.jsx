@@ -12,57 +12,51 @@ import { Table, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-
-
 import axios from "axios";
 
 export default function MisSolicitudes() {
-  //  const { isSaving, setIsSaving } = useContext(DataContext);
+  const [data, setData] = useState({ nombre: "", apellido: "" });
   const [orders, setOrders] = useState([]);
-  const [data, setData] = useState(null)
-  const Navigate = useNavigate()
+
+  const Navigate = useNavigate();
+
   useEffect(() => {
-    if (!localStorage.getItem('coderToken')) Navigate('/login')
+    if (!localStorage.getItem("coderToken")) Navigate("/login");
     else {
-      const token = localStorage.getItem('coderToken')
+      const token = localStorage.getItem("coderToken");
       const regex = /"(.+?)"/;
       const match = token.match(regex);
-      const valorCoderToken = match[1]
-      console.log(valorCoderToken)
+      const valorCoderToken = match[1];
+      console.log(valorCoderToken);
       const config = {
         headers: {
-          'Authorization': `Bearer ${valorCoderToken}`
-        }
-      }
+          Authorization: `Bearer ${valorCoderToken}`,
+        },
+      };
 
-      axios.get(import.meta.env.VITE_MAIN_API + '/missolicitudes', config)
+      axios
+        .get(import.meta.env.VITE_MAIN_API + "/missolicitudes", config)
         .then((res) => {
-          setData(res.data)
-          console.log(data)
+          setData(res.data);
+          setOrders(res.data.solicitudes);
+          console.log(res.data.solicitudes)
         })
         .catch((err) => console.log(err.message));
     }
-
   }, []);
 
-  /*   const handleSaveClick = () => {
-    setIsSaving(true);
-    // Save all changes here
-    setTimeout(() => {
-      setIsSaving(false);
-    }, 2000); // simulate save operation with a 2 second delay
-  }; */
-
-  return (
+  const { nombre, apellido } = data;
+    return (
     <div className="maincontainer">
-      {/* <Navegacion /> */}
       <br />
 
       <header className="row mt-4">
         <br />
 
         <div className="col-12 maincontainer">
-          <h2>Hola Freecoder: {data !== null && data.nombre} {data !== null && data.apellido} </h2>
+          <h2 style={{ textTransform: "uppercase" }}>
+            Hola Freecoder: {nombre} {apellido}{" "}
+          </h2>
         </div>
         <br />
       </header>
@@ -77,124 +71,248 @@ export default function MisSolicitudes() {
             <Card.Body
               style={{
                 backgroundColor: "#f1f1f1",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
-              <Table striped bordered hover>
-                <tbody >
-
+              <Table
+                bordered
+                responsive
+                style={{
+                  borderSpacing: "10px",
+                  fontSize: "80%",
+                  borderRadius: "5px",
+                  borderColor: "darkgrey",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                }}
+              >
+                <thead
+                  style={{ backgroundColor: "darkgrey", fontSize: "120%" }}
+                >
                   <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      id
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.id)} // id de tabla solicitudes
-                    </td>
+                    <th>Elemento</th>
+                    <th>Descripción</th>
                   </tr>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      Descripcion_proyecto
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.programador_id)} //descripcion_proyecto de tabla solicitudes
-                    </td>
-                  </tr>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      Presupuesto
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.descripcion_proyecto)} //presupuestoreal de tabla solicitudes
-                    </td>
-                  </tr>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      Nombre Cliente
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.presupuesto)} //nombre_cliente de tabla solicitudes
-                    </td>
-                  </tr>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      Fecha_solicitud
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.cliente_id)} //Fecha_solicitud de tabla solicitudes
-                    </td>
-                  </tr>
-                  <tr>
-                    <th
-                      style={{
-                        border: "1px solid #ced1e1",
-                        fontWeight: "normal",
-                        padding: "10px",
-                      }}
-                    >
-                      Status Orden
-                    </th>
-                    <td
-                      style={{ border: "1px solid #ced1e1", padding: "10px" }}
-                    >
-                      {orders.map((order) => order.order_status)} //no hay campo para esto, habría que crear uno o dejarlos todo como "en proceso" por defecto.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan="2">
-                      <Link to="/crearpropuesta" style={{ textDecoration: "none" }} >
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          className="button-guardar"
-                        >
-                          Ir a detalle solicitud
-                        </Button>
-                      </Link>
-
-                    </td>
-                  </tr>
+                </thead>
+                <tbody>
+                  {orders &&
+                    orders.map((order) => (
+                      <>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              borderColor: "white",
+                              borderWidth: "1px",
+                              borderStyle: "solid",
+                            }}
+                          >
+                            id
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.id}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              borderColor: "white",
+                              borderWidth: "1px",
+                              borderStyle: "solid",
+                            }}
+                          >
+                            Estado de la solicitud
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            Propuesta en desarrollo
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Nombre del proyecto
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.titulo_proyecto}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Descripción del proyecto
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.descripcion_proyecto}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Nombre cliente
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.nombre_cliente}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Apellido cliente
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.apellido}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Correo del cliente
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.email}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Presupuesto estimado inicialmente
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            ${order.presupuesto.toLocaleString('en-US').replace(/\,/g, '.')}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Stack tecnológico recomendado por el cliente
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.stack_1}, {order.stack_2}, {order.stack_3},{" "}
+                            {order.stack_otros}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                            }}
+                          >
+                            Ejemplo o boceto de referencia
+                          </td>
+                          <td
+                            style={{
+                              wordWrap: "break-word",
+                              maxWidth: "200px",
+                              backgroundColor: "white",
+                            }}
+                          >
+                            {order.boceto}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colSpan="2">
+                            <Link
+                              to={`/crearpropuesta/${order.id}`}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <Button
+                                variant="primary"
+                                type="submit"
+                                className="button-guardar"
+                              >
+                                Ir a detalle solicitud
+                              </Button>
+                            </Link>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
                 </tbody>
               </Table>
             </Card.Body>

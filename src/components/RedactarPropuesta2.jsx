@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 
 function RedactarPropuesta2() {
   const { crearPropuesta, setCrearPropuesta, setData } =

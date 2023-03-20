@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { DataContext } from '../hooks/DataContext';
 
 function CrearPropInicio() {
   const [nombre, setNombre] = useState('');

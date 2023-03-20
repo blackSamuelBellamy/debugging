@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 
 function RedactarPropuesta3() {
-  const { crearPropuesta,setCrearPropuesta,setData } = useContext(DataContext) //importado de context
+  const { crearPropuesta, setCrearPropuesta, setData } = useContext(DataContext) //importado de context
   const [stackOtros, setStackOtros] = useState(""); // corresponde a stack_otros
   const [alcance, setAlcance] = useState("");//alcance
   const [horasEstimadas, setHorasEstimadas] = useState("");//horas_estimadas
@@ -29,28 +30,28 @@ function RedactarPropuesta3() {
   const handleStackOtrosChange = (event) => {
     setStackOtros(event.target.value);
     localStorage.setItem("stackOtros", event.target.value);
-  };  
+  };
 
   const handleAlcanceChange = (event) => {
     setAlcance(event.target.value);
     localStorage.setItem("alcance", event.target.value);
-  };  
+  };
 
   const handleCantidadRevisiones = (event) => {
     setCantidadRevisiones(event.target.value);
     localStorage.setItem("cantidadRevisiones", event.target.value);
-  };  
+  };
 
 
   const handleHorasEstimadas = (event) => {
     setHorasEstimadas(event.target.value);
     localStorage.setItem("horasEstimadas", event.target.value);
-  };  
+  };
 
   const handleValorFinal = (event) => {
     setValorFinal(event.target.value);
     localStorage.setItem("valorFinal", event.target.value);
-  };  
+  };
 
 
 
@@ -91,7 +92,7 @@ function RedactarPropuesta3() {
         <input
           type="number"
           placeholder="Revisiones"
-          value={CantidadRevisiones} //cantidad_revisiones
+          value={cantidadRevisiones} //cantidad_revisiones
           required
           onChange={handleCantidadRevisiones} //corresponde en base de datos propuesta_coder a cantidad_revisiones
         />

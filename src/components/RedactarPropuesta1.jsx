@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DataContext } from "../hooks/DataContext";
 
 function RedactarPropuesta1() {
   const [title, setTitle] = useState("");
