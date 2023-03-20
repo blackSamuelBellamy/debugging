@@ -2,20 +2,32 @@ import { Container, Card } from "react-bootstrap";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Navegacion from "../components/Navegacion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 //Esta es data mock de los coders. Debe reemplazarse por la proveniente de la BD. 
 
-const temporaryData = {
-  userName: "Mary Freecoder",
-  date: "2022-10-01",
-  clientName: "Francisco",
-};
+
 
 
 function EnvioPropuesta() {
+
+  const [clientName, setClientName] = useState('')
+  const [userName, setUserName] = useState('')
+  const [foto_url, setFoto_URL] = useState('')
   const Navigate = useNavigate()
+  const { id } = useParams()
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_MAIN_API + `/enviopropuesta/${id}`)
+    .then(res => {
+      console.log(res.data[1].programador[0])
+      setClientName(res.data[0].cliente[0])
+      setUserName(res.data[1].programador[0])
+      setFoto_URL(res.data[1].programador[2])
+    })
+  })
 
   const handleAcceptProposal =(event) => {
     event.preventDefault();
@@ -33,7 +45,7 @@ function EnvioPropuesta() {
       }
     });
   };
-
+  
   const  handleRejectProposal =(event) => {
     event.preventDefault();
     Swal.fire({
@@ -45,7 +57,7 @@ function EnvioPropuesta() {
   };
   
 
-  const { userName, date, clientName } = temporaryData;
+ // const { date } = temporaryData;
 
   const title = "Título ingresado por freecoder (Placeholder)";
   const description =
@@ -69,7 +81,7 @@ function EnvioPropuesta() {
         <div className="maincontainer">
           {/* <Navegacion /> */}
           <br />
-          <h2> ¡Felicitaciones {clientName}! </h2>
+          <h2> ¡Felicitaciones  {clientName} </h2>
           <br />
           <p>Nuestro coder {userName} te ha enviado una propuesta</p>
         </div>
@@ -77,7 +89,7 @@ function EnvioPropuesta() {
         <div className="maincontainer">
           <Card.Img
             variant="top"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNGO-vi7hcHF9yzYNnDkM6QXBzWf86zJKDyw&usqp=CAU"
+            src={foto_url}
           />
         </div>
         <div className="maincontainer">
@@ -90,7 +102,7 @@ function EnvioPropuesta() {
                 <h2>S001</h2>
               </Card.Title>
               <br />
-              <Card.Text>Fecha de solicitud: {date}</Card.Text>
+              <Card.Text>Fecha de solicitud: {/* {date} */}</Card.Text>
               <Card.Text>Nombre del solicitante: {clientName}</Card.Text>
               <br />
               <Card.Text>

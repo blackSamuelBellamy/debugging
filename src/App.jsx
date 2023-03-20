@@ -44,7 +44,7 @@ const App = () => {
               <Route path="/abonarpropuesta" element={<AbonarPropuesta />} />
               <Route path="/confirmarorden" element={<ConfirmarOrden />} />
               <Route path="/seguimiento" element={<Seguimiento />} />
-              <Route path="/enviopropuesta" element={<EnvioPropuesta />} />
+              <Route path="/enviopropuesta/:id" element={<EnvioPropuesta />} />
             </Routes>
           </div>
         </BrowserRouter>

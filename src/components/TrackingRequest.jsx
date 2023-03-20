@@ -10,11 +10,13 @@ import swal from 'sweetalert2';
 import Loading from './Loading'
 import Navegacion from './Navegacion';
 import TrackingDeploy from './TrackingDeploy';
+import axios from 'axios';
 
 
 function TrackingRequest() {
 
   const [loading, setLoading] = useState(false);
+ 
 
   const carga = () => {
     const numSeguimiento = document.getElementById("numSeguimiento").value;
@@ -30,6 +32,24 @@ function TrackingRequest() {
         setLoading(false);
       }, 3000)
     }
+   axios.post(import.meta.env.VITE_MAIN_API + '/seguimiento', numSeguimiento)
+    .then(res => {
+      swal.fire({
+        icon: 'success',
+        title: res.data,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    })
+    .catch(err => {
+      swal.fire({
+        icon: 'error',
+        title: err.response.data,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }) 
+    console.log(numSeguimiento)
   }
 
   return (
