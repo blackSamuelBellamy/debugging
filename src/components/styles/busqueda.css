@@ -81,7 +81,8 @@
 .side-2 {
     background-color: aliceblue;
     color: #222;
-    transform: rotateY(90deg) translateZ(150px)
+    transform: rotateY(90deg) translateZ(150px);
+    font-size: 85%;
 }
 
 .coderBoxCards:hover .coderBox-content {
@@ -129,11 +130,3 @@
         flex-direction: column;
     }
 }
-
-/* @media (max-width: 1360px) {
-    .coderContainer {
-        top: 30%;
-    }
-}
-
- */

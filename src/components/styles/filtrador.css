@@ -67,21 +67,6 @@
     transform: rotate(-45deg);
 }
 
-.filtradorLogo {
-    width: 20em;
-    height: 100%;
-    position: relative;
-}
-
-.filtradorLogo img {
-    position: absolute;
-    top: -60%;
-    width: 100%;
-    height: 10em;
-    object-fit: cover;
-    object-position: center;
-}
-
 .menuBusqueda {
     height: inherit;
     width: 100%;
@@ -106,17 +91,13 @@
 }
 
 .busquedaResponsive {
-    top: -100%;
-    background: red;
     width: 50em;
     height: 5em;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    animation: menuBusqueda .5s linear forwards;
+    /* animation: menuBusqueda .5s linear forwards; */
 }
 
 @keyframes menuBusqueda {
@@ -135,50 +116,6 @@
     }
 }
 
-.volver {
-    width: 10em;
-    height: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.volver a {
-    text-decoration: none;
-}
-
-.volverButton {
-    position: relative;
-    right: 40%;
-    outline: none;
-    width: 7em;
-    height: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(5, 154, 233, 0.9);
-    border-radius: 20px;
-    color: #fff;
-    font-size: 1.2em;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow: .5px .5px .5px #333;
-    z-index: 30;
-    cursor: pointer;
-    text-transform: capitalize;
-}
-
-.volverIcon {
-    font-size: 2em;
-    position: relative;
-    z-index: 30;
-    color: blue;
-    cursor: pointer;
-    width: 1.2em;
-    height: 1.2em;
-    display: none;
-}
-
 .inputBoxSearch {
     position: relative;
 }
@@ -193,14 +130,11 @@
 
 
 .hiddenBox {
-
     width: 11em;
     background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(30px);
     position: absolute;
     top: 300%;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: none;
     z-index: 50;
@@ -230,7 +164,7 @@
 
 .hidden {
     display: block;
-    animation: showing .5s linear forwards;
+    animation: showing .5s linear;
 }
 
 @keyframes showing {
@@ -245,35 +179,10 @@
     }
 }
 
-@media (max-width: 1400px) {
-    .volverButton {
-        display: none;
-    }
-
-    .volverIcon {
-        display: block;
-        font-size: 1.5em;
-        color: #000;
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-}
-
 @media (max-width: 900px) {
 
     .menuBusqueda {
         display: none;
-    }
-
-    .filtradorLogo {
-        position: absolute;
-    }
-
-    .filtradorLogo img {
-        transform: scale(.8);
-        position: absolute;
     }
 
     .filtradorHamburger {
@@ -314,7 +223,6 @@
 
     .hidden {
         display: block;
-        animation: showing .5s linear forwards;
         position: absolute;
         left: 45%;
     }
@@ -327,7 +235,6 @@
 
         to {
             opacity: 1;
-            position: fixed;
             top: 130%;
         }
     }

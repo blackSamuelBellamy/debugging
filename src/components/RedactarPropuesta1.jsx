@@ -3,23 +3,49 @@ import React, { useState } from "react";
 function RedactarPropuesta1() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { crearPropuesta,setCrearpropuesta,setData } = useContext(DataContext) //esto se importa
+  const { crearPropuesta,setCrearPropuesta,setData } = useContext(DataContext) //esto se importa
   
   const handleTitleChange = (event) => {
-    setTitle(event.target.value); //corresponde en base de datos propuesta_coder a _propuesta_titulo
+    setTitle(event.target.value);
+    localStorage.setItem("propuesta_titulo", event.target.value);
+     //corresponde en base de datos propuesta_coder a propuesta_titulo
   };
   
 
   const handleDescriptionChange = (event) => {
-    setDescription(event.target.value); //corresponde en base de datos propuesta_coder a descripcion_propuesta
+    setDescription(event.target.value);
+    localStorage.setItem("descripcion_propuesta", event.target.value);
+     //corresponde en base de datos propuesta_coder a descripcion_propuesta
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formulario = new FormData(mainForm.current)
-    const data = Object.fromEntries([...formulario.entries()])
-    setData(data) 
-  };
+
+
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   
+    const load = [{
+      propuesta_titulo, descripcion_propuesta
+    }]
+    axios.post(import.meta.env.VITE_MAIN_API + /propuestacoder/ + id, load)
+    .then(res => {
+      localStorage.setItem('clienteToken', JSON.stringify(res.data))
+      Swal.fire({
+        icon: "success",
+        title: "¡Éxito!",
+        text: "La propuesta ha sido enviada con éxito al cliente.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    })
+    .catch(err => {
+      Swal.fire({
+        icon: "error",
+        title: err.response.data,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    })
 
   return (
     <div className="maincontainer">
@@ -38,6 +64,7 @@ function RedactarPropuesta1() {
             maxLength={50}
           />
         </div>
+
         <div>
           <br />
           <div>
@@ -64,5 +91,7 @@ function RedactarPropuesta1() {
     </div>
   );
 }
+}
+
 
 export default RedactarPropuesta1;

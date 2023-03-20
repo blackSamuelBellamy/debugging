@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 function RedactarPropuesta3() {
-  const { crearPropuesta,setCrearpropuesta,setData } = useContext(DataContext) //importado de context
+  const { crearPropuesta,setCrearPropuesta,setData } = useContext(DataContext) //importado de context
   const [stackOtros, setStackOtros] = useState(""); // corresponde a stack_otros
   const [alcance, setAlcance] = useState("");//alcance
   const [horasEstimadas, setHorasEstimadas] = useState("");//horas_estimadas
-  const [CantidadRevisiones, setCantidadRevisiones] = useState("");//cantidad_revisiones
+  const [cantidadRevisiones, setCantidadRevisiones] = useState("");//cantidad_revisiones
   const [valorFinal, setValorFinal] = useState(""); //valor_final
   const [hourValue, setHourValue] = useState("");
 
   const handleSave = () => {
-    if (!stackOtros || !alcance || !CantidadRevisiones || !horasEstimadas || !hourValue || !valorFinal) {
+    if (!stackOtros || !alcance || !cantidadRevisiones || !horasEstimadas || !hourValue || !valorFinal) {
       alert("Por favor completa todos los campos antes de guardar.");
       return;
     }
@@ -18,15 +18,45 @@ function RedactarPropuesta3() {
     const data = {
       stackOtros,
       alcance,
-      hours,
-      CantidadRevisiones,
+      horasEstimadas,
+      cantidadRevisiones,
       valorFinal,
     };
-    localStorage.setItem("projectData", JSON.stringify(data));
+    localStorage.setItem("propuesta_coder", JSON.stringify(data));
   };
 
+
+  const handleStackOtrosChange = (event) => {
+    setStackOtros(event.target.value);
+    localStorage.setItem("stackOtros", event.target.value);
+  };  
+
+  const handleAlcanceChange = (event) => {
+    setAlcance(event.target.value);
+    localStorage.setItem("alcance", event.target.value);
+  };  
+
+  const handleCantidadRevisiones = (event) => {
+    setCantidadRevisiones(event.target.value);
+    localStorage.setItem("cantidadRevisiones", event.target.value);
+  };  
+
+
+  const handleHorasEstimadas = (event) => {
+    setHorasEstimadas(event.target.value);
+    localStorage.setItem("horasEstimadas", event.target.value);
+  };  
+
+  const handleValorFinal = (event) => {
+    setValorFinal(event.target.value);
+    localStorage.setItem("valorFinal", event.target.value);
+  };  
+
+
+
+
   const calculateValue = () => {
-    const calculatedValue = hours * hourValue;
+    const calculatedValue = horasEstimadas * hourValue;
     setValue(calculatedValue);
   };
 
@@ -40,7 +70,7 @@ function RedactarPropuesta3() {
           value={stackOtros}//stack_otros
           maxLength={50}
           required
-          onChange={(e) => setStackOtros(e.target.value)}  //corresponde en base de datos propuesta_coder a stack_otros
+          onChange={handleStackOtrosChange}  //corresponde en base de datos propuesta_coder a stack_otros
         />
       </div>
       <br />
@@ -51,7 +81,7 @@ function RedactarPropuesta3() {
           placeholder="Alcances, límites, aspectos no contemplados en el servicio.Ejemplo: No incluye hosting."
           value={alcance} //alcance
           maxLength={100}
-          onChange={(e) => setAlcance(e.target.value)} //corresponde en base de datos propuesta_coder a alcance
+          onChange={handleAlcanceChange} //corresponde en base de datos propuesta_coder a alcance
         />
       </div>
       <br />
@@ -63,7 +93,7 @@ function RedactarPropuesta3() {
           placeholder="Revisiones"
           value={CantidadRevisiones} //cantidad_revisiones
           required
-          onChange={(e) => setCantidadRevisiones(e.target.value)} //corresponde en base de datos propuesta_coder a cantidad_revisiones
+          onChange={handleCantidadRevisiones} //corresponde en base de datos propuesta_coder a cantidad_revisiones
         />
       </div>
       <br />
@@ -74,7 +104,7 @@ function RedactarPropuesta3() {
           placeholder="Horas de desarrollo"
           value={horasEstimadas} //horas_estimadas
           required
-          onChange={(e) => setHorasEstimadas(e.target.value)} //corresponde en base de datos propuesta_coder a horas_estimadas
+          onChange={handleHorasEstimadas} //corresponde en base de datos propuesta_coder a horas_estimadas
         />
       </div>
       <br />
@@ -105,7 +135,7 @@ function RedactarPropuesta3() {
           type="number"
           placeholder="Valor Final"
           value={valorFinal} //valor_final
-          onChange={(e) => setValorfinal(e.target.value)} //corresponde en base de datos propuesta_coder a valor_final
+          onChange={handleValorFinal} //corresponde en base de datos propuesta_coder a valor_final
           style={{
             fontSize: "20px",
             border: "none",

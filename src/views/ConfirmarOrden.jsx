@@ -7,22 +7,25 @@ import Swal from "sweetalert2";
 
 
 function ConfirmRequest() {
-  const numeroDeSeguimiento = "123456"; // importar nombre de API o base de datos
-  const coderName = "Mary Free Coder"; // importar nombre de API o base de datos
-
   const [data, setData] = useState(null)
   const Navigate = useNavigate()
 
   useEffect(() => {
     if (!localStorage.getItem('clienteToken')) Navigate('/home')
     else {
-      const token = localStorage.getItem('clienteToken');
-      axios.get(import.meta.env.VITE_MAIN_API + '/confirmarorden',{
-        headers: { Authorization: `Bearer ${token}`}
-      })
+      const token = localStorage.getItem('clienteToken')
+      const regex = /"(.+?)"/;
+      const match = token.match(regex);
+      const valorClienteToken = match[1]
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${valorClienteToken}`
+        }
+      }
+      axios.get(import.meta.env.VITE_MAIN_API + '/confirmarorden', config)
         .then(res => {
-          console.log(res.data)
           setData(res.data)
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err)
@@ -38,34 +41,35 @@ function ConfirmRequest() {
 
   }, [])
 
-  console.log(data)
+
   return (
     <>
       <div className="maincontainer">
         {/*  <Navegacion /> */}
         <div className="maincontainer">
-          <h2>¡Felicitaciones!</h2>
+          <h2>¡Felicitaciones! {data !== null && data.nombre_cliente}</h2>
           <br />
-          <h3>Hemos enviado tu solicitud al Freecoder</h3>
+          <h3>Hemos enviado tu solicitud al Freecoder </h3>
         </div>
         <div className="maincontainer">
-          <Card.Title>Coder Name: {coderName}</Card.Title>
+          {data !== null && <Card.Title>{data.nombre} {data.apellido}</Card.Title>}
         </div>
 
         <div className="maincontainer-proceso text-center">
           <Card className="mx-auto">
-            <Card.Img
+           {data !== null &&  
+           <Card.Img
               variant="top"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNGO-vi7hcHF9yzYNnDkM6QXBzWf86zJKDyw&usqp=CAU"
-            />
+              src={data.foto_url}
+            />}
             <Card.Body>
               <Card.Text>
                 <div className="maincontainer">
                   <p>Stack tecnoloógico:</p>
                   <ul>
-                    <li>Javascript</li>
-                    <li>React</li>
-                    <li>Postgres</li>
+                    {data !== null && <li>{data.stack_1}</li>}
+                    {data !== null && <li>{data.stack_2}</li>}
+                    {data !== null && <li>{data.stack_3}</li>}
                   </ul>
                 </div>
               </Card.Text>
@@ -75,7 +79,7 @@ function ConfirmRequest() {
 
         <div className="maincontainer">
           <h3>
-            Tu número de seguimiento es el {`${numeroDeSeguimiento || "000"}`}
+            Tu número de seguimiento es el {data !== null && data.solicitud_id}
           </h3>
           <br />
           <h3>Recibirás un correo de confirmación en tu bandeja de entrada</h3>

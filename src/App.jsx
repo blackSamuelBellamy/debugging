@@ -14,7 +14,6 @@ import AbonarPropuesta from "./views/AbonarPropuesta";
 import ConfirmarOrden from "./views/ConfirmarOrden";
 import Seguimiento from "./views/Seguimiento";
 import EnvioPropuesta from "./views/EnvioPropuesta";
-import ProtectedRoute from "./hooks/protectedRoutes";
 import Nav from "./components/Nav";
 
 const App = () => {

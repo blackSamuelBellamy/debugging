@@ -13,21 +13,33 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
+
 import axios from "axios";
 
 export default function MisSolicitudes() {
   //  const { isSaving, setIsSaving } = useContext(DataContext);
   const [orders, setOrders] = useState([]);
+  const [data, setData] = useState(null)
   const Navigate = useNavigate()
-  const coderToken = localStorage.getItem("coderToken");
   useEffect(() => {
     if (!localStorage.getItem('coderToken')) Navigate('/login')
     else {
-    
-      axios.get("http://localhost:5500/missolicitudes", {
-          headers: { Authorization: `Bearer ${coderToken}` },
+      const token = localStorage.getItem('coderToken')
+      const regex = /"(.+?)"/;
+      const match = token.match(regex);
+      const valorCoderToken = match[1]
+      console.log(valorCoderToken)
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${valorCoderToken}`
+        }
+      }
+
+      axios.get(import.meta.env.VITE_MAIN_API + '/missolicitudes', config)
+        .then((res) => {
+          setData(res.data)
+          console.log(data)
         })
-        .then((res) => console.log(res))
         .catch((err) => console.log(err.message));
     }
 
@@ -50,7 +62,7 @@ export default function MisSolicitudes() {
         <br />
 
         <div className="col-12 maincontainer">
-          <h2>Hola Freecoder: ___</h2>
+          <h2>Hola Freecoder: {data !== null && data.nombre} {data !== null && data.apellido} </h2>
         </div>
         <br />
       </header>

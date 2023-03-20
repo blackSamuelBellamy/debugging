@@ -58,7 +58,7 @@ const Form = () => {
     } else {
       setClave(password);
       setCorreo(email);
-      axios.post(import.meta.env.VITE_MAIN_API + '/login', { email, password })
+      axios.post(import.meta.env.VITE_MAIN_API + '/login', { email, password }) 
         .then(res => {
           Swal.fire({
             icon: "success",

@@ -175,7 +175,7 @@ export default function ContactarFreecoder() {
       title, description, stack_1: 'JavaScript', stack_2: 'Python', stack_3: 'go',
       comments, selectedFile, pptoEstimado, id
     }]
-    axios.post(import.meta.env.VITE_MAIN_API + /contactarfreecoder/ + id, load)
+    axios.post(import.meta.env.VITE_MAIN_API + /contactarfreecoder/ + id, load) 
     .then(res => {
       localStorage.setItem('clienteToken', JSON.stringify(res.data))
       Swal.fire({
@@ -185,6 +185,9 @@ export default function ContactarFreecoder() {
         showConfirmButton: false,
         timer: 1500,
       });
+      setTimeout(() => {
+        Navigate('/confirmarorden')
+      }, 1300)
     })
     .catch(err => {
       Swal.fire({
@@ -194,11 +197,6 @@ export default function ContactarFreecoder() {
         timer: 1500,
       })
     })
-
-    setTimeout(() => {
-      localStorage.getItem('clienteToken') && Navigate('/confirmarorden')
-    }, 1500)
-   
   };
   return (
     <>
